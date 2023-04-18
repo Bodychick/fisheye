@@ -22,17 +22,22 @@
                 "portrait": "account.png"
             },
         ]*/
-        fetch('data/photographers.json',)
+        const requestOptions = {
+            headers: {    
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*' }};
+        fetch('data/photographers.json')
         .then(response => response.json())
         .then(data => {
             console.log(data.photographers)
             photographers2 = data.photographers;
-            console.log(photographer2); // Affiche les données des photographes dans la console
+            console.log(photographers2); // Affiche les données des photographes dans la console
         })
         .catch(error => console.error(error));
 
         // et bien retourner le tableau photographers seulement une fois récupéré
-        console.log(photographers2);
+        console.log("Avant le return");
         console.log(photographers2);
         return photographers2;
         //photographers;
