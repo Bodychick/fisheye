@@ -22,11 +22,7 @@
                 "portrait": "account.png"
             },
         ]*/
-        const requestOptions = {
-            headers: {    
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*' }};
+        
         fetch('data/photographers.json')
         .then(response => {
             return response.json()
