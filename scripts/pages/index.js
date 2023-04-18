@@ -39,9 +39,7 @@
         });
 
         // et bien retourner le tableau photographers seulement une fois récupéré
-        console.log("Avant le return");
-        console.log(photographers2);
-        
+        console.log("Avant le return");        
     }
 
     async function displayData(photographers) {
