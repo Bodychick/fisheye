@@ -28,11 +28,12 @@
             console.log(data.photographers)
             photographers2 = data.photographers;
             console.log(photographers2); // Affiche les données des photographes dans la console
+            return ({photographers2: [...photographers2]});
         })
         .catch(error => console.error(error));
 
         // et bien retourner le tableau photographers seulement une fois récupéré
-        return ({photographers2: [...photographers2]});
+        
         //photographers;
     }
 
