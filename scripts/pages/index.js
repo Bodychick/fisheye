@@ -27,13 +27,12 @@
         .then(data => {
             console.log(data.photographers)
             photographers2 = data.photographers;
-            console.log(({photographers2: [...photographers2]})); // Affiche les données des photographes dans la console
-            return ({photographers2: [...photographers2]});
+            console.log(({photographers2: [...photographers2]})+"C'est avec la syntaxe bizarre"); // Affiche les données des photographes dans la console
         })
         .catch(error => console.error(error));
 
         // et bien retourner le tableau photographers seulement une fois récupéré
-        
+        return photographers2;
         //photographers;
     }
 
@@ -50,7 +49,7 @@
 
     async function init() {
         // Récupère les datas des photographes
-        const { photographers } = await getPhotographers();
+        const photographers = await getPhotographers();
         console.log(photographers);
         displayData(photographers);
     };
