@@ -20,9 +20,9 @@ function photographerFactory(data) {
         tarif.classList.add("price");
         article.appendChild(img);
         article.appendChild(h2);
-        article.appendChild(city);
+        article.appendChild(lieu);
         article.appendChild(quote);
-        article.appendChild(price);
+        article.appendChild(tarif);
         return (article);
     }
     return { name, picture, getUserCardDOM }
