@@ -27,7 +27,7 @@
         .then(data => {
             console.log(data.photographers)
             photographers2 = data.photographers;
-            console.log(photographers2); // Affiche les données des photographes dans la console
+            console.log(({photographers2: [...photographers2]})); // Affiche les données des photographes dans la console
             return ({photographers2: [...photographers2]});
         })
         .catch(error => console.error(error));
