@@ -39,7 +39,7 @@
             return photographers2;
         })
         .catch(error => {
-            return console.error(error)
+            console.error(error)
         });
 
         // et bien retourner le tableau photographers seulement une fois récupéré
