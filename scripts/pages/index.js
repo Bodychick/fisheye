@@ -27,11 +27,13 @@
         .then(data => {
             console.log(data.photographers)
             photographers2 = data.photographers;
-            console.log(({photographers2: [...photographers2]})); // Affiche les données des photographes dans la console
+            console.log(photographer2); // Affiche les données des photographes dans la console
         })
         .catch(error => console.error(error));
 
         // et bien retourner le tableau photographers seulement une fois récupéré
+        console.log(photographers2);
+        console.log(photographers2);
         return photographers2;
         //photographers;
     }
