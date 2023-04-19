@@ -1,22 +1,19 @@
     async function getPhotographers() {
         let photographers2=[];
-        fetch('data/photographers.json')
+        return fetch('data/photographers.json')
         .then(response => {
             return response.json()
         })
         .then(data => {
-            let photographers2=[];
             photographers2 = data.photographers;
             console.log(photographers2);
             return photographers2; // Affiche les données des photographes dans la console
         })
         .catch(error => {
-            console.error(error)
+            console.error(error);
         });
-
-        return photographers2;
+        
         // et bien retourner le tableau photographers seulement une fois récupéré
-       // console.log("Avant le return");
     }
 
    async function displayData(photographers) {
