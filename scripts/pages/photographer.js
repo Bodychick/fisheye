@@ -45,8 +45,22 @@ async function displayData(medias) {
     });
 };
 
-async function displayPhotographerInfo(photographer){
+async function displayHeaderPhotographer(resultPhotographer) {
+    const image=document.getElementById("image_photographer");
+    const namePhotographer = document.getElementById("name");
+    const location = document.getElementById("location");
+    const tagline = document.getElementById("tagline");
+    console.log(resultPhotographer);
+    namePhotographer.textContent=resultPhotographer.name;
+    location.textContent=resultPhotographer.city + ", " + resultPhotographer.country;
+    tagline.textContent=resultPhotographer.tagline;
+    image.src= `assets/photographers/${resultPhotographer.portrait}`;
+
     const mainSection = document.getElementById("main");
+    const element = document.createElement("p");
+    element.setAttribute("id","price");
+    element.textContent= resultPhotographer.price +" € / jour"
+    mainSection.appendChild(element);
 }
 
 async function init(){
@@ -55,9 +69,12 @@ async function init(){
     const params = new URLSearchParams(url.search);
     // Récupérer la valeur de l'id
     const id = params.get('id');
+    console.log(id)
 
     var photographers = await getPhotographers();
-    let resultPhotographer = photographers.filter(photographer =>photographer.photographerId==id);
+    let resultPhotographer = await photographers.filter(photographer =>photographer.id==id);
+    console.log(resultPhotographer)
+    displayHeaderPhotographer(resultPhotographer[0]);
 
     var medias = await getMediaByPhotographer();
     //console.log(medias)

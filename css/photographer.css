@@ -1,3 +1,4 @@
+
 #contact_modal {
     display: none;
 }
@@ -91,4 +92,33 @@ form input {
     object-fit: cover;
     height: 100px;
     width: 100px;
+}
+.photographer_info{
+    padding-left: 30px;
+}
+.photographer_info #location{
+    color:#901C1C;
+}
+.photograph-header{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+#image_photographer{
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+#price {
+    position: fixed;
+    bottom: 0;
+    right: 100px;
+    background-color:#DB8876;
+    color:black;
+    padding: 20px 30px;
+    margin-bottom: 0;
+    border-radius: 10px 10px 0 0;
 }
