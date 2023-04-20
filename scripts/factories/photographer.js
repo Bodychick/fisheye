@@ -31,3 +31,20 @@ function photographerFactory(data) {
     }
     return { name, picture, city, country, tagline, price, id, getUserCardDOM }
 }
+
+function mediaFactory(data){
+     const {id, photographerId, title, image, video, likes, date, price } = data;
+
+     if (image == null){
+        const media = `assets/medias/${video}`;
+     }else {
+        const media = `assets/medias/${image}`;
+     }
+     
+ 
+     function getMediaCardDom() {
+        const article = document.createElement('article');
+        return (article);
+     }
+     return { id, photographerId, title, image, video, likes, date, price, getMediaCardDom }
+}

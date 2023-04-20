@@ -11,8 +11,7 @@
         })
         .catch(error => {
             console.error(error);
-        });
-        
+        });   
         // et bien retourner le tableau photographers seulement une fois récupéré
     }
 
