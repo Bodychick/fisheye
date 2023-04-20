@@ -35,14 +35,18 @@ async function getMediaByPhotographer() {
 }
 
 async function displayData(medias) {
+    let nbLikes=0;
     const photographersSection = document.querySelector(".medias_section");
     console.log(medias);
     medias.forEach((media) => {
         console.log(media);
         const mediaModel = mediaFactory(media);
         const userCardDOM = mediaModel.getMediaCardDom();
+        nbLikes=nbLikes+media.likes;
         photographersSection.appendChild(userCardDOM);
     });
+    let priceConteneur = document.getElementById("price");
+    priceConteneur.textContent = nbLikes+ " likes, " + priceConteneur.textContent;
 };
 
 async function displayHeaderPhotographer(resultPhotographer) {

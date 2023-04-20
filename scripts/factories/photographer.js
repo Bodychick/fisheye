@@ -41,7 +41,10 @@ function mediaFactory(data){
         const media = `assets/medias/${image}`;
      }
      
- 
+     /*function getLikes(){
+        return (data.likes);
+     }*/
+
      function getMediaCardDom() {
         const article = document.createElement('article');
         return (article);
