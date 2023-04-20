@@ -40,13 +40,9 @@ function mediaFactory(data){
      }else {
         const media = `assets/medias/${image}`;
      }
-     
-     /*function getLikes(){
-        return (data.likes);
-     }*/
 
      function getMediaCardDom() {
-        const article = document.createElement('article');
+        const article = document.createElement('article'); 
         return (article);
      }
      return { id, photographerId, title, image, video, likes, date, price, getMediaCardDom }
