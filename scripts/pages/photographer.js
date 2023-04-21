@@ -67,6 +67,27 @@ async function displayHeaderPhotographer(resultPhotographer) {
     mainSection.appendChild(element);
 }
 
+async function triMedias(data){
+    const selectTri = document.getElementById("select_filter");
+    selectTri.addEventListener("input", function(){
+        let value = selectTri.value;
+        console.log(value)
+        switch(value){
+            case 'date':
+            data.sort(function(a,b){
+                // Turn your strings into dates, and then subtract them
+                // to get a value that is either negative, positive, or zero.
+                return new Date(b.date) - new Date(a.date);
+                });
+            console.log(data)
+            return data;
+            break;
+            default:
+                console.log("erreur")
+        }
+    });
+}
+
 async function init(){
     // récupère l'URL
     const url = new URL(window.location.href); 
@@ -83,6 +104,8 @@ async function init(){
     var medias = await getMediaByPhotographer();
     //console.log(medias)
     let result = medias.filter(media => media.photographerId==id);
+    // Récupérer les données filtrées
+    result = await triMedias(result);
     console.log(result);
 
     displayData(result);

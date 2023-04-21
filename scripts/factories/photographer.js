@@ -35,6 +35,10 @@ function photographerFactory(data) {
 function mediaFactory(data){
      const {id, photographerId, title, image, video, likes, date, price } = data;
 
+     //Savoir dans quel dossier prendre l'image en sélectionnant le prénom du photographe
+     //Récupérer le name du photographe + déduire le prénom dans penant tout ce qu'il y a avant l'espace
+
+     // Savoir si c'est une vidéo ou une image
      if (image == null){
         const media = `assets/medias/${video}`;
      }else {
