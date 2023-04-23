@@ -3,7 +3,7 @@
 async function getPhotographers() {
     return fetch('data/photographers.json')
     .then(response => {
-        return response.json()
+        return response.json();
     })
     .then(data => {
         photographers2 = data.photographers;
@@ -13,6 +13,8 @@ async function getPhotographers() {
     .catch(error => {
         console.error(error);
     });   
+
+    
     // et bien retourner le tableau photographers seulement une fois récupéré
 }
 
@@ -35,8 +37,17 @@ async function getMediaByPhotographer() {
 }
 
 async function displayData(medias) {
+    console.log("pour afficher les médias")
+    console.log(medias)
     let nbLikes=0;
     const photographersSection = document.querySelector(".medias_section");
+    console.log("Je sais pas ce qui en ressort "+photographersSection.childElementCount);
+    if(photographersSection.childElementCount>0)
+    {
+        while(photographersSection.firstChild){
+            photographersSection.removeChild(photographersSection.firstChild);
+        }
+    }
     console.log(medias);
     medias.forEach((media) => {
         console.log(media);
@@ -47,6 +58,7 @@ async function displayData(medias) {
     });
     let priceConteneur = document.getElementById("price");
     priceConteneur.textContent = nbLikes+ " likes, " + priceConteneur.textContent;
+    console.log("tout est passé")
 };
 
 async function displayHeaderPhotographer(resultPhotographer) {
@@ -67,25 +79,45 @@ async function displayHeaderPhotographer(resultPhotographer) {
     mainSection.appendChild(element);
 }
 
-async function triMedias(data){
-    const selectTri = document.getElementById("select_filter");
-    selectTri.addEventListener("input", function(){
-        let value = selectTri.value;
-        console.log(value)
-        switch(value){
-            case 'date':
+function switchTri(data,value){
+    switch(value){
+        case 'date':
             data.sort(function(a,b){
                 // Turn your strings into dates, and then subtract them
                 // to get a value that is either negative, positive, or zero.
                 return new Date(b.date) - new Date(a.date);
                 });
-            console.log(data)
+            console.log(data);
+        return data;
+        case 'popular':
+            data.sort(function(a,b){
+                // to get a value that is either negative, positive, or zero.
+                return (b.likes) - (a.likes);
+                });
+            console.log(data);
             return data;
-            break;
-            default:
-                console.log("erreur")
-        }
+        case 'title':
+            data.sort((a, b) => a.title.localeCompare(b.title));
+            console.log(data);
+            return data;
+
+        default:
+            console.log("erreur")
+        break;
+    }
+}
+
+async function triMedias(data){
+    console.log("en arrivant dans la fonction trimedia")
+    console.log(data)
+    const selectTri = document.getElementById("select_filter");
+    selectTri.addEventListener("input", function(){
+        let value = selectTri.value;
+        console.log(value)
+        data  = switchTri(data, value);
+        displayData(data);
     });
+    return data;
 }
 
 async function init(){
@@ -105,9 +137,11 @@ async function init(){
     //console.log(medias)
     let result = medias.filter(media => media.photographerId==id);
     // Récupérer les données filtrées
+    console.log("avant letri média")
+    console.log(result)
     result = await triMedias(result);
     console.log(result);
-
+    result  = switchTri(result, "popular");
     displayData(result);
 }
 

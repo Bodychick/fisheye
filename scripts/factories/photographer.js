@@ -47,6 +47,9 @@ function mediaFactory(data){
 
      function getMediaCardDom() {
         const article = document.createElement('article'); 
+        const text = document.createElement('p')
+        text.textContent = title + "  " + date + "  "+ likes;
+        article.appendChild(text);
         return (article);
      }
      return { id, photographerId, title, image, video, likes, date, price, getMediaCardDom }

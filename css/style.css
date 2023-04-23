@@ -5,11 +5,10 @@ body {
     margin: 0;
 }
 
-
-
 header {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     height: 90px;
@@ -29,7 +28,7 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
-    margin-top: 100px;
+    margin-top: 80px;
 }
 
 .photographer_section article {
@@ -52,6 +51,7 @@ h1 {
     height: 200px;
     width: 200px;
     object-fit: cover;
+    border-radius: 50%;
 }
 .photographer_section article p {
     margin: 0;
@@ -66,4 +66,29 @@ h1 {
 }
 .price{
     color:#757575;
+}
+
+@media (max-width: 770px) {
+    .photographer_section {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 50px;
+    }
+    .photographer_section article {
+        width: 80%;
+    }
+    header{
+        justify-content: center;
+    }
+    header img{
+        width: 100%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .photographer_section {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-top: 50px;
+    }
 }
