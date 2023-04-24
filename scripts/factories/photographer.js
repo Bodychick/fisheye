@@ -41,26 +41,47 @@ function mediaFactory(data){
       let text = name.textContent.split(' ');
       console.log(text)
       let media = "assets/"+text[0] ;
+      let mediaElement="";
+      const source = document.createElement("source");
       if(image==null){
-         media = media + video;
+         media = media +"/" + video;
+         mediaElement = document.createElement("video");
+         mediaElement.setAttribute("controls","");
+         mediaElement.classList.add("image")
+         source.setAttribute("src",media);
+         mediaElement.appendChild(source);
       }
       else {
          media = media +"/"+image;
+         mediaElement = document.createElement("img");
+         mediaElement.classList.add("image")
+         mediaElement.setAttribute("src", media);
+         mediaElement.setAttribute("alt", title);
       }
-      console.log(media)
-     // Savoir si c'est une vidéo ou une image
+
+      // Savoir si c'est une vidéo ou une image
 
      function getMediaCardDom() {
         const article = document.createElement('article'); 
         const figure = document.createElement("figure");
-        const image = document.createElement("img");
-        image.setAttribute("src", media);
-        figure.appendChild(image);
+        
+        const figcaption = document.createElement("figcaption");
+        const figcaptionChild = document.createElement("span");
+        const figcaptionChild2 = document.createElement("span");
+        const iconLikes = document.createElement("i");
+        iconLikes.classList.add("fa-solid","fa-heart");
+       
+        
+        figcaptionChild.textContent=title;
+        figcaptionChild2.textContent=likes+" ";
+        figcaptionChild2.appendChild(iconLikes);
+        figcaption.classList.add("color-red");
+        figcaption.appendChild(figcaptionChild);
+        figcaption.appendChild(figcaptionChild2);
+        figure.appendChild(mediaElement);
+        figure.appendChild(figcaption);
         article.appendChild(figure);
-        const text = document.createElement('p')
-        text.textContent = title + "  " + date + "  "+ likes;
-        article.appendChild(text);
         return (article);
      }
-     return { id, photographerId, title, image, video, likes, date, price, getMediaCardDom }
+     return { id, photographerId, title, image, video, likes, date, price, mediaElement, getMediaCardDom }
 }

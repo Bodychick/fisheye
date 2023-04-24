@@ -1,4 +1,7 @@
 
+*{
+    box-sizing: border-box;
+}
 #contact_modal {
     display: none;
 }
@@ -84,14 +87,36 @@ form input {
     gap: 50px;
 }
 .medias_section article {
-    width: 200px;
-    height:200px;
+    width: 100%;
+    height:300px;
     background-color: #901C1C;
+    border-radius: 10px;
 }
+.medias_section figure {
+    margin: 0;
+    padding: 0;
+    display: block;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+.medias_section figcaption {
+   margin-top: 0;
+   padding-top: 0;
+   display: flex;
+   justify-content: space-between;
+}
+.color-red{
+    color: #901C1C;
+    font-size: 1.10em;
+}
+
 .image{
     object-fit: cover;
-    height: 200px;
-    width: 200px;
+    height: 300px;
+    width: 100%;
+    border-radius: 10px;
 }
 .photographer_info{
     padding-left: 30px;
@@ -123,7 +148,7 @@ form input {
     border-radius: 10px 10px 0 0;
     display: flex;
     justify-content: space-between;
-    width: 150px;
+    width: 220px;
 }
 #priceConteneur{
     text-align: right;
