@@ -84,14 +84,14 @@ form input {
     gap: 50px;
 }
 .medias_section article {
-    width: 100%;
+    width: 200px;
     height:200px;
     background-color: #901C1C;
 }
-.medias_section article image{
+.image{
     object-fit: cover;
-    height: 100px;
-    width: 100px;
+    height: 200px;
+    width: 200px;
 }
 .photographer_info{
     padding-left: 30px;
@@ -121,6 +121,12 @@ form input {
     padding: 20px 30px;
     margin-bottom: 0;
     border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+}
+#priceConteneur{
+    text-align: right;
 }
 .filter{
     margin: 0 auto;

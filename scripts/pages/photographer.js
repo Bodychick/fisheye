@@ -37,11 +37,8 @@ async function getMediaByPhotographer() {
 }
 
 async function displayData(medias) {
-    console.log("pour afficher les médias")
-    console.log(medias)
     let nbLikes=0;
     const photographersSection = document.querySelector(".medias_section");
-    console.log("Je sais pas ce qui en ressort "+photographersSection.childElementCount);
     if(photographersSection.childElementCount>0)
     {
         while(photographersSection.firstChild){
@@ -57,8 +54,20 @@ async function displayData(medias) {
         photographersSection.appendChild(userCardDOM);
     });
     let priceConteneur = document.getElementById("price");
-    priceConteneur.textContent = nbLikes+ " likes, " + priceConteneur.textContent;
-    console.log("tout est passé")
+    const likesConteneur = document.getElementById("likes")
+    if(likesConteneur == null){
+        const likes = document.createElement("span");
+        likes.setAttribute("id","likes");
+        const iconLikes = document.createElement("i");
+        iconLikes.classList.add("fa-solid","fa-heart");
+        console.log(iconLikes)
+        likes.textContent=+ nbLikes + "   ";
+        likes.appendChild(iconLikes);
+        console.log(likes)
+        priceConteneur.insertBefore(likes, priceConteneur.firstChild);
+        console.log("tout est passé")
+    }
+    
 };
 
 async function displayHeaderPhotographer(resultPhotographer) {
@@ -75,7 +84,10 @@ async function displayHeaderPhotographer(resultPhotographer) {
     const mainSection = document.getElementById("main");
     const element = document.createElement("p");
     element.setAttribute("id","price");
-    element.textContent= resultPhotographer.price +" € / jour"
+    const price = document.createElement("span")
+    price.setAttribute("id","priceConteneur");
+    price.textContent= resultPhotographer.price +" € / jour"
+    element.appendChild(price);
     mainSection.appendChild(element);
 }
 

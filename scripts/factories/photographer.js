@@ -37,16 +37,26 @@ function mediaFactory(data){
 
      //Savoir dans quel dossier prendre l'image en sélectionnant le prénom du photographe
      //Récupérer le name du photographe + déduire le prénom dans penant tout ce qu'il y a avant l'espace
-
+      const name = document.getElementById("name");
+      let text = name.textContent.split(' ');
+      console.log(text)
+      let media = "assets/"+text[0] ;
+      if(image==null){
+         media = media + video;
+      }
+      else {
+         media = media +"/"+image;
+      }
+      console.log(media)
      // Savoir si c'est une vidéo ou une image
-     if (image == null){
-        const media = `assets/medias/${video}`;
-     }else {
-        const media = `assets/medias/${image}`;
-     }
 
      function getMediaCardDom() {
         const article = document.createElement('article'); 
+        const figure = document.createElement("figure");
+        const image = document.createElement("img");
+        image.setAttribute("src", media);
+        figure.appendChild(image);
+        article.appendChild(figure);
         const text = document.createElement('p')
         text.textContent = title + "  " + date + "  "+ likes;
         article.appendChild(text);
