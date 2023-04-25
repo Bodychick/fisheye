@@ -18,7 +18,7 @@
           <p id="location"></p>
           <p id="tagline"></p>
         </section>
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button id="contactBouton" class="contact_button" onclick="displayModal()">Contactez-moi</button>
         <figure >
           <img src="" alt="" id="image_photographer">
         </figure>
@@ -41,12 +41,24 @@
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-				<form>
+				<form id="form-modal">
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="name">Prénom</label>
+						<input type="text" id="nameModal" name="nameModal"/>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <div>
+						<label for="lastname">Nom</label>
+						<input type="text" id="lastNameModal" name="lastNameModal"/>
+					</div>
+          <div>
+						<label for="email">Email</label>
+						<input type="email" id="email"/>
+					</div>
+          <div>
+						<label for="message">Votre message</label>
+						<input type="text" id="message" class="textarea"/>
+					</div>
+          <input type="submit" class="contact_button" value="Envoyer" id="buttonSubmit">
 				</form>
 			</div>
 		</div>
