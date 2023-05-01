@@ -5,6 +5,7 @@ const emailModal = document.getElementById("email");
 const messageModal = document.getElementById("message");
 const contactBouton = document.getElementById("contactBouton");
 const buttonSubmit = document.getElementById("buttonSubmit");
+
 /*let valideForm = {
     "nameModal":false,
     "lastNameModal":false,
@@ -25,7 +26,7 @@ const regexMail =/^[a-zA-Z0-9.éèê_+-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,}$/;
 //action URL
 buttonSubmit.addEventListener("click",formModalValidation);
 
-/*nameModal.addEventListener("input",function verifRegex($name){
+nameModal.addEventListener("input",function verifRegex($name){
     console.log(regexName.test(nameModal.value));
     if (regexName.test(nameModal.value)==false)
     {
@@ -36,7 +37,7 @@ buttonSubmit.addEventListener("click",formModalValidation);
       valideForm[$name.name]=true;
       nameModal.validity.valid=false;
     }
-});*/
+});
 
 //Verifier si tous les éléments du tableau de vérification
 function toutesLesValeursSontVraies(valideForm) {

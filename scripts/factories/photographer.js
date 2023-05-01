@@ -46,7 +46,7 @@ function mediaFactory(data){
       if(image==null){
          media = media +"/" + video;
          mediaElement = document.createElement("video");
-         mediaElement.setAttribute("controls","");
+         //mediaElement.setAttribute("controls","");
          mediaElement.classList.add("image")
          source.setAttribute("src",media);
          mediaElement.appendChild(source);
@@ -63,6 +63,7 @@ function mediaFactory(data){
 
      function getMediaCardDom() {
         const article = document.createElement('article'); 
+        article.classList.add("media");
         const figure = document.createElement("figure");
         
         const figcaption = document.createElement("figcaption");
