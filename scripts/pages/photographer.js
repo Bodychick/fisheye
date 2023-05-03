@@ -114,8 +114,6 @@ async function triMedias(data){
         console.log(value);
         data  = switchTri(data, value);
         displayData(data);
-        loadVisionneuse(data, articles);
-        likeOnPhoto(data);
     });
     return data;
 }
@@ -147,9 +145,6 @@ async function init(){
     result = await triMedias(result);
     result  = switchTri(result, "popular");
     displayData(result);
-    loadVisionneuse(result, articles);
-    likeOnPhoto(result);
-
 }
 
 function likeOnPhoto(result){
@@ -173,7 +168,7 @@ function likeOnPhoto(result){
 // on récupère toutes les images de la page et on ajoute un listener au click sur celle-ci 
 // On récupère l'élément parent .media pour obtenir tout l'article et passer les éléments textuels + le tableau des result
 function loadVisionneuse(result) {
-    console.log(result);
+    console.log("Chargement de la visionneuse "+result);
     let images = Array.from(document.getElementsByClassName("image"));
     images = Array.from(images);
     images.forEach((image) => {
