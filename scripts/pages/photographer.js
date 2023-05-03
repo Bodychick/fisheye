@@ -49,7 +49,8 @@ async function displayData(medias) {
         priceConteneur.insertBefore(likes, priceConteneur.firstChild);
         console.log("tout est passé")
     }
-    
+    loadVisionneuse(medias);
+    likeOnPhoto(medias);    
 };
 
 async function displayHeaderPhotographer(resultPhotographer) {
@@ -110,10 +111,11 @@ async function triMedias(data){
     const articles = document.getElementsByClassName("media");
     selectTri.addEventListener("input", function(){
         let value = selectTri.value;
-        console.log(value)
+        console.log(value);
         data  = switchTri(data, value);
         displayData(data);
         loadVisionneuse(data, articles);
+        likeOnPhoto(data);
     });
     return data;
 }
@@ -154,20 +156,29 @@ function likeOnPhoto(result){
     const likes = document.querySelectorAll(".fa-heart");
     likes.forEach((like)=> {
         like.addEventListener("click", function incrementLikes(){
-                        
+          console.log(like.closest('.media'));  
+          const article = like.closest('.media');  
+          const title = article.querySelector('figcaption span:first-child').textContent;
+          console.log(result.filter(resul=> resul.title==title));
+          var likes = result.filter(resul=> resul.title==title);
+          index = result.indexOf(result.find(item => item.title === title))
+          console.log(index);
+          result[index].likes = likes[0].likes + 1;
+          console.log(result);
+          displayData(result);
         });
     });
 }
 
-function loadVisionneuse(result, articles) {
+// on récupère toutes les images de la page et on ajoute un listener au click sur celle-ci 
+// On récupère l'élément parent .media pour obtenir tout l'article et passer les éléments textuels + le tableau des result
+function loadVisionneuse(result) {
     console.log(result);
-    const images = Array.from(document.getElementsByClassName("image"));
-
-
-    
-    articles = Array.from(articles);
-    articles.forEach((article) => {
-        article.addEventListener("click",function createVisionneuse(){
+    let images = Array.from(document.getElementsByClassName("image"));
+    images = Array.from(images);
+    images.forEach((image) => {
+        image.addEventListener("click",function createVisionneuse(){
+            var article = image.closest('.media');
             console.log(article);
             const valuetitre = article.querySelector('figcaption span:first-child').textContent;
             var videoSrc = article.querySelector('video.image source');
@@ -293,9 +304,7 @@ function nextMedia(result){
 
 
 function changerMedia (result, title){
-    console.log(title)
     title.textContent=result.title;
-    console.log(result.title);
     console.log(result);
     let media = document.querySelector(".image-visionneuse");
     const name = document.getElementById("name");
@@ -340,9 +349,6 @@ function changerMedia (result, title){
 
     }
 }
-
-
-
 
 
 init();
