@@ -71,7 +71,6 @@ function mediaFactory(data){
         const figcaptionChild2 = document.createElement("span");
         const iconLikes = document.createElement("i");
         iconLikes.classList.add("fa-solid","fa-heart");
-       
         
         figcaptionChild.textContent=title;
         figcaptionChild2.textContent=likes+" ";

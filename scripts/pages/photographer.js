@@ -18,24 +18,6 @@ async function getPhotographers() {
     // et bien retourner le tableau photographers seulement une fois récupéré
 }
 
-/*async function getMediaByPhotographer() {
-    let photographers2=[];
-    return fetch('data/photographers.json')
-    .then(response => {
-        return response.json()
-    })
-    .then(data => {
-        photographers2 = data.media;
-        console.log(photographers2);
-        return photographers2; // Affiche les données des photographes dans la console
-    })
-    .catch(error => {
-        console.error(error);
-    });
-    
-    // et bien retourner le tableau photographers seulement une fois récupéré
-}*/
-
 async function displayData(medias) {
     let nbLikes=0;
     const photographersSection = document.querySelector(".medias_section");
@@ -125,11 +107,13 @@ async function triMedias(data){
     console.log("en arrivant dans la fonction trimedia")
     console.log(data)
     const selectTri = document.getElementById("select_filter");
+    const articles = document.getElementsByClassName("media");
     selectTri.addEventListener("input", function(){
         let value = selectTri.value;
         console.log(value)
         data  = switchTri(data, value);
         displayData(data);
+        loadVisionneuse(data, articles);
     });
     return data;
 }
@@ -139,7 +123,7 @@ async function init(){
     const url = new URL(window.location.href); 
     const params = new URLSearchParams(url.search);
     const articles = document.getElementsByClassName("media");
-    const main = document.getElementById("main");
+    //const image = document.getElementsByClassName("image");
     // Récupérer la valeur de l'id
     const id = params.get('id');
     console.log(id)
@@ -162,10 +146,25 @@ async function init(){
     result  = switchTri(result, "popular");
     displayData(result);
     loadVisionneuse(result, articles);
+    likeOnPhoto(result);
+
+}
+
+function likeOnPhoto(result){
+    const likes = document.querySelectorAll(".fa-heart");
+    likes.forEach((like)=> {
+        like.addEventListener("click", function incrementLikes(){
+                        
+        });
+    });
 }
 
 function loadVisionneuse(result, articles) {
-    console.log(result)
+    console.log(result);
+    const images = Array.from(document.getElementsByClassName("image"));
+
+
+    
     articles = Array.from(articles);
     articles.forEach((article) => {
         article.addEventListener("click",function createVisionneuse(){
@@ -314,7 +313,7 @@ function changerMedia (result, title){
             source.setAttribute("id","mediaSource");
             source.src=urlMedia+"/"+result.video;
             newMedia.appendChild(source);
-            media.innerHTML = newMedia;
+            media.parentElement.replaceChild(newMedia, media);
             console.log(media)
         }
         else {
@@ -332,7 +331,7 @@ function changerMedia (result, title){
             newMedia.setAttribute("id","mediaSource");
             newMedia.src=urlMedia+"/"+result.image;
             console.log(newMedia);
-            media.innerHTML = newMedia;
+            media.parentElement.replaceChild(newMedia, media);
             console.log(media)            
         }else {
             const mediaSource = document.getElementById("mediaSource");
@@ -341,6 +340,8 @@ function changerMedia (result, title){
 
     }
 }
+
+
 
 
 
