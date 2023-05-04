@@ -1,5 +1,7 @@
-//Mettre le code JavaScript lié à la page photographer.html
 
+/*
+
+*/ 
 async function getPhotographers() {
     return fetch('data/photographers.json')
     .then(response => {
@@ -51,7 +53,7 @@ async function displayData(medias) {
     }
     loadVisionneuse(medias);
     likeOnPhoto(medias);    
-};
+}
 
 async function displayHeaderPhotographer(resultPhotographer) {
     const image=document.getElementById("image_photographer");
@@ -296,7 +298,6 @@ function nextMedia(result){
         });
     } 
 }
-
 
 function changerMedia (result, title){
     title.textContent=result.title;
