@@ -256,6 +256,9 @@ function closeVisionneuse(){
     }
 }
 
+/*Fonction qui prend le media précédent du tableau (result) sur la lightbox
+Si l'élément est en position 0. On le repasse tout en haut du tableau
+*/ 
 function beforeMedia(result){
     console.log(result)
     const beforeArrow = document.getElementById("beforeMedia");
@@ -278,6 +281,9 @@ function beforeMedia(result){
     } 
 }
 
+/*Fonction qui prend le media suivant du tableau (result) sur la lightbox
+Si l'élément est en position maximum (longueur du tableau). On le repasse tout en positon 0
+*/ 
 function nextMedia(result){
     console.log(result)
     const nextArrow = document.getElementById("nextMedia");
@@ -285,7 +291,7 @@ function nextMedia(result){
     if (nextArrow!=null){
         nextArrow.addEventListener("click", function nextMediaElement(){
             //console.log(title);
-            let actualValue = result.indexOf(result.find(item => item.title === title.textContent));
+            let actualValue = result.indexOf(result.find(item => item.title === title.textContent));//On trouve l'index de l'élément
             console.log("NEXT : The actual value is " + actualValue);
 
             if(actualValue+1 >= result.length){
