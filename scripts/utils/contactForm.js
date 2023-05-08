@@ -6,38 +6,51 @@ const messageModal = document.getElementById("message");
 const contactBouton = document.getElementById("contactBouton");
 const buttonSubmit = document.getElementById("buttonSubmit");
 
-/*let valideForm = {
+let valideForm = {
     "nameModal":false,
     "lastNameModal":false,
     "email":false,
     "message":false
-}*/
-let valideForm = {
-    "nameModal":true,
-    "lastNameModal":true,
-    "email":true,
-    "message":true
 }
 
 //CONST REGEX
 const regexName =/^[a-zA-Z-éèê]{2,}$/;
 const regexMail =/^[a-zA-Z0-9.éèê_+-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,}$/;
+const regexMessage = /^[a-zA-Z0-9\s,'-()éèêàâ]*$/;
 
 //action URL
 buttonSubmit.addEventListener("click",formModalValidation);
 
-nameModal.addEventListener("input",function verifRegex($name){
-    console.log(regexName.test(nameModal.value));
-    if (regexName.test(nameModal.value)==false)
+nameModal.addEventListener("input", function()
+{
+  verifRegex(nameModal, regexName);
+});
+
+lastNameModal.addEventListener("input", function()
+{
+  verifRegex(lastNameModal, regexName);
+});
+
+emailModal.addEventListener("input", function(){
+  verifRegex(emailModal, regexMail);
+});
+
+messageModal.addEventListener("input", function(){
+  verifRegex(messageModal,regexMessage);
+})
+
+function verifRegex($name, $regex){
+    console.log($regex.test($name.value));
+    if ($regex.test($name.value)==false)
     {
       valideForm[$name.name]=false;
-      nameModal.validity.valid;
+      $name.style.border = "2px solid red";
     }
     else {
       valideForm[$name.name]=true;
-      nameModal.validity.valid=false;
+      $name.style.border = "2px solid green";
     }
-});
+  }
 
 //Verifier si tous les éléments du tableau de vérification
 function toutesLesValeursSontVraies(valideForm) {
@@ -62,17 +75,19 @@ function closeModal() {
     modal.style.display = "none";
 }
 
-function formModalValidation(event){
+buttonSubmit.addEventListener("click", formModalValidation)
 
+function formModalValidation(event){
+  console.log(valideForm);
     if (toutesLesValeursSontVraies(valideForm)){
         console.log("toutes les valeurs sont true");
         closeModal();
-        console.log(formModal);
         formModal.reset();
-        event.preventDefault();
+    }
+    else {
+      console.log("c'est faux")
     }
     event.preventDefault();
-    
 }
 
 
