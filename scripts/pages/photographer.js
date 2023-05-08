@@ -1,6 +1,6 @@
 
 /*
-
+    Récupération des données contenus dans le fichier json
 */ 
 async function getPhotographers() {
     return fetch('data/photographers.json')
@@ -9,17 +9,14 @@ async function getPhotographers() {
     })
     .then(data => {
         photographers2 = data;
-        console.log(photographers2);
-        return photographers2; // Affiche les données des photographes dans la console
+        return photographers2; 
     })
     .catch(error => {
         console.error(error);
-    });   
-
-    
-    // et bien retourner le tableau photographers seulement une fois récupéré
+    });       
 }
 
+/* Affichage de tous les médias 1 par 1 en lien avec la factory */
 async function displayData(medias) {
     let nbLikes=0;
     const photographersSection = document.querySelector(".medias_section");
@@ -42,19 +39,22 @@ async function displayData(medias) {
     if(likesConteneur == null){
         const likes = document.createElement("span");
         likes.setAttribute("id","likes");
+        const likesValue = document.createElement("span");
+        likesValue.classList.add("numberLikes");
+        likesValue.setAttribute("id","likesValue");
+        likesValue.textContent = nbLikes;
+        likes.appendChild(likesValue);
         const iconLikes = document.createElement("i");
         iconLikes.classList.add("fa-solid","fa-heart");
-        console.log(iconLikes)
-        likes.textContent=+ nbLikes + "   ";
+        likes.textContent== nbLikes;
         likes.appendChild(iconLikes);
-        console.log(likes)
         priceConteneur.insertBefore(likes, priceConteneur.firstChild);
-        console.log("tout est passé")
     }
     loadVisionneuse(medias);
     likeOnPhoto(medias);    
 }
 
+/* Affichage du header avec les informations sur photographe */
 async function displayHeaderPhotographer(resultPhotographer) {
     const image=document.getElementById("image_photographer");
     const namePhotographer = document.getElementById("name");
@@ -68,6 +68,7 @@ async function displayHeaderPhotographer(resultPhotographer) {
     tagline.textContent=resultPhotographer.tagline;
     image.src= `assets/photographers/${resultPhotographer.portrait}`;
 
+    // Création du bloc fixe avec les prix
     const mainSection = document.getElementById("main");
     const element = document.createElement("p");
     element.setAttribute("id","price");
@@ -78,6 +79,7 @@ async function displayHeaderPhotographer(resultPhotographer) {
     mainSection.appendChild(element);
 }
 
+/* En fonction du click sur select, renvoie un tableau des valeurs triées */
 function switchTri(data,value){
     switch(value){
         case 'date':
@@ -106,6 +108,7 @@ function switchTri(data,value){
     }
 }
 
+/* Permet de faire le tri au click sur le select */ 
 async function triMedias(data){
     console.log("en arrivant dans la fonction trimedia")
     console.log(data)
@@ -120,6 +123,7 @@ async function triMedias(data){
     return data;
 }
 
+/* Fonction d'initialisation */
 async function init(){
     // récupère l'URL
     const url = new URL(window.location.href); 
@@ -153,18 +157,36 @@ function likeOnPhoto(result){
     const likes = document.querySelectorAll(".fa-heart");
     likes.forEach((like)=> {
         like.addEventListener("click", function incrementLikes(){
-          console.log(like.closest('.media'));  
           const article = like.closest('.media');  
           const title = article.querySelector('figcaption span:first-child').textContent;
-          console.log(result.filter(resul=> resul.title==title));
           var likes = result.filter(resul=> resul.title==title);
-          index = result.indexOf(result.find(item => item.title === title))
-          console.log(index);
-          result[index].likes = likes[0].likes + 1;
-          console.log(result);
-          displayData(result);
+          index = result.indexOf(result.find(item => item.title === title));
+
+          if(like.classList.contains("fa-regular"))
+          {
+            var bloc = like.parentNode.parentNode;
+            var blocText = bloc.querySelector("#numberLikes").textContent;
+            blocText = parseInt(blocText, 10) + 1;
+            bloc.querySelector("#numberLikes").textContent = blocText;
+            like.classList.replace("fa-regular","fa-solid");
+            modifyPriceBloc(1);
+          }
+          else if (like.classList.contains("fa-solid")) {
+            var bloc = like.parentNode.parentNode;
+            var blocText = bloc.querySelector("#numberLikes").textContent;
+            blocText = parseInt(blocText, 10) - 1;
+            bloc.querySelector("#numberLikes").textContent = blocText;
+            like.classList.replace("fa-solid","fa-regular");
+            modifyPriceBloc(-1);
+          }      
         });
     });
+}
+
+function modifyPriceBloc(numberofLikes){
+    const likesBloc = document.getElementById("likesValue");
+    console.log(likesBloc.textContent);
+    likesBloc.textContent = parseInt(likesBloc.textContent,10) + numberofLikes;
 }
 
 // on récupère toutes les images de la page et on ajoute un listener au click sur celle-ci 
@@ -188,6 +210,7 @@ function loadVisionneuse(result) {
                 media.classList.add("image-visionneuse");
                 media.setAttribute("controls","");
                 const source  = document.createElement("source");
+                source.setAttribute("alt", valuetitre);
                 source.setAttribute("id","mediaSource");
                 source.src=videoSrc;
                 media.appendChild(source);
@@ -198,6 +221,7 @@ function loadVisionneuse(result) {
                 media = document.createElement("img");
                 media.classList.add("image-visionneuse");
                 media.setAttribute("id","mediaSource");
+                media.setAttribute("alt",valuetitre);
                 media.src=imageSrc;
                 console.log(media);
             }
@@ -216,12 +240,20 @@ function loadVisionneuse(result) {
             const icone = document.createElement("i");
             icone.classList.add("fa-solid","fa-xmark");
             icone.setAttribute("id","closeVisionneuse");
+            icone.setAttribute("role","button");
+            icone.setAttribute("aria-label", "Cliquez pour fermer la lightbox");
+
             const backArrow = document.createElement("i");
             const forwardArrow = document.createElement("i");
+
             backArrow.classList.add("fa-solid","fa-angle-left");
             backArrow.setAttribute("id","beforeMedia");
+            backArrow.setAttribute("role","button");
+            backArrow.setAttribute("aria-label", "Cliquez pour afficher le média précédent");
             forwardArrow.classList.add("fa-solid","fa-angle-right");
             forwardArrow.setAttribute("id","nextMedia");
+            forwardArrow.setAttribute("role","button");
+            forwardArrow.setAttribute("aria-label", "Cliquez pour afficher le média suivant");
             const titre = document.createElement("h1");
             titre.textContent=valuetitre;
             titre.setAttribute("id","titre")
@@ -246,6 +278,7 @@ function loadVisionneuse(result) {
     
 }
 
+/* Fonction qui permet la fermeture de la lightbox */
 function closeVisionneuse(){
     const visionneuse  = document.getElementById("fond-visionneuse");
     const closeVisionneuse = document.getElementById("closeVisionneuse");
@@ -290,8 +323,9 @@ function nextMedia(result){
     let title = document.getElementById("titre");
     if (nextArrow!=null){
         nextArrow.addEventListener("click", function nextMediaElement(){
-            //console.log(title);
-            let actualValue = result.indexOf(result.find(item => item.title === title.textContent));//On trouve l'index de l'élément
+
+            //On trouve l'index de l'élément
+            let actualValue = result.indexOf(result.find(item => item.title === title.textContent));
             console.log("NEXT : The actual value is " + actualValue);
 
             if(actualValue+1 >= result.length){
@@ -305,6 +339,7 @@ function nextMedia(result){
     } 
 }
 
+/* Fonction qui permet de changer le type de média entre photo et video en navigant dans la lightbox */ 
 function changerMedia (result, title){
     title.textContent=result.title;
     console.log(result);

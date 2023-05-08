@@ -57,6 +57,7 @@ function mediaFactory(data){
          mediaElement.classList.add("image")
          mediaElement.setAttribute("src", media);
          mediaElement.setAttribute("alt", title);
+         mediaElement.setAttribute("aria-label","Cliquez sur l'image ou la vidéo pour l'agrandir");
       }
 
       // Savoir si c'est une vidéo ou une image
@@ -69,11 +70,19 @@ function mediaFactory(data){
         const figcaption = document.createElement("figcaption");
         const figcaptionChild = document.createElement("span");
         const figcaptionChild2 = document.createElement("span");
+        const figcaptionLikes = document.createElement("span");
+   
+        figcaptionLikes.setAttribute("id","numberLikes");
+        figcaptionLikes.classList.add("numberLikes")
+        
         const iconLikes = document.createElement("i");
-        iconLikes.classList.add("fa-solid","fa-heart");
+        iconLikes.classList.add("fa-regular","fa-heart");
+        iconLikes.setAttribute("role","button");
+        iconLikes.setAttribute("aria-label","Cliquez ici pour liker ce contenu")
         
         figcaptionChild.textContent=title;
-        figcaptionChild2.textContent=likes+" ";
+        figcaptionLikes.textContent=likes;
+        figcaptionChild2.appendChild(figcaptionLikes);
         figcaptionChild2.appendChild(iconLikes);
         figcaption.classList.add("color-red");
         figcaption.appendChild(figcaptionChild);

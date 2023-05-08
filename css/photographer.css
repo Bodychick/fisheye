@@ -110,6 +110,9 @@
 .textarea{
     height: 200px;
 }
+.numberLikes{
+    margin-right: 3px;
+}
 
 .modal header h2 {
     font-size: 46px;
