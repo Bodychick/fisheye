@@ -67,6 +67,7 @@ async function displayHeaderPhotographer(resultPhotographer) {
     location.textContent=resultPhotographer.city + ", " + resultPhotographer.country;
     tagline.textContent=resultPhotographer.tagline;
     image.src= `assets/photographers/${resultPhotographer.portrait}`;
+    image.alt="Photo de " + namePhotographer;
 
     // Création du bloc fixe avec les prix
     const mainSection = document.getElementById("main");
@@ -249,7 +250,7 @@ function modifyPriceBloc(numberofLikes){
 // On récupère l'élément parent .media pour obtenir tout l'article et passer les éléments textuels + le tableau des result
 function loadVisionneuse(result) {
     console.log("Chargement de la visionneuse "+result);
-    let images = Array.from(document.getElementsByClassName("image"));
+    let images = Array.from(document.getElementsByClassName("lienVisionneuse"));
     images = Array.from(images);
     images.forEach((image) => {
         image.addEventListener("click",function createVisionneuse(){
@@ -329,7 +330,6 @@ function loadVisionneuse(result) {
             closeVisionneuse();
             beforeMedia(result);
             nextMedia(result);
-            gestionnaireTouche(result);
         });   
     });
     

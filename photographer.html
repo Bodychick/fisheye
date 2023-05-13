@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
   </head>
   <body>
     <header>
-      <a href="index.html"><img src="assets/images/logo.png" class="logo" /></a>
+      <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="logo Fisheye" aria-label="Voir la liste de tous les photographes"/></a>
     </header>
     <main id="main">
       <div class="photograph-header">
@@ -21,7 +21,7 @@
         </section>
         <button id="contactBouton" class="contact_button" onclick="displayModal()">Contactez-moi</button>
         <figure >
-          <img src="" alt="" id="image_photographer">
+          <img  id="image_photographer" >
         </figure>
       </div>
       <section class="filter">
@@ -40,7 +40,7 @@
 			<div class="modal">
 				<header>
           <h2 id="nomPhotographerModal">Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" alt="Fermez la modal de contact"  />
         </header>
 				<form id="form-modal">
 					<div>
@@ -63,7 +63,7 @@
 				</form>
 			</div>
 		</div>
-    <script src="scripts/factories/photographer.js"></script>
+    <script src="scripts/factories/mediaPhotographer.js"></script>
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
     <script src="https://kit.fontawesome.com/7fd9044dc4.js" crossorigin="anonymous"></script>
