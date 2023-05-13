@@ -79,10 +79,26 @@ buttonSubmit.addEventListener("click", formModalValidation)
 
 function formModalValidation(event){
   console.log(valideForm);
+  verifRegex(nameModal, regexName);
+  verifRegex(lastNameModal, regexName); 
+  verifRegex(emailModal, regexMail);
+  verifRegex(messageModal,regexMessage);
+
     if (toutesLesValeursSontVraies(valideForm)){
+        
         console.log("toutes les valeurs sont true");
+        console.log("Prénom :" + nameModal.value);
+        console.log("Nom :" + lastNameModal.value);
+        console.log("Email :" + emailModal.value);
+        console.log("Message :" +messageModal.value);
         closeModal();
         formModal.reset();
+        valideForm = {
+          "nameModal":false,
+          "lastNameModal":false,
+          "email":false,
+          "message":false
+      }
     }
     else {
       console.log("c'est faux")

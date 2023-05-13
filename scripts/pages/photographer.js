@@ -28,8 +28,8 @@ async function displayData(medias) {
     }
     console.log(medias);
     medias.forEach((media) => {
-        console.log(media);
         const mediaModel = mediaFactory(media);
+        console.log(mediaModel);
         const userCardDOM = mediaModel.getMediaCardDom();
         nbLikes=nbLikes+media.likes;
         photographersSection.appendChild(userCardDOM);
@@ -125,6 +125,7 @@ async function triMedias(data){
 
 /* Fonction d'initialisation */
 async function init(){
+    localStorage.clear();
     // récupère l'URL
     const url = new URL(window.location.href); 
     const params = new URLSearchParams(url.search);
@@ -153,7 +154,58 @@ async function init(){
     displayData(result);
 }
 
+function ajouterDansLocalStorage(id, like){
+    const nomTableau = "photoLiked";
+    // Récupération du tableau depuis le localStorage
+    var tableauRecupere = localStorage.getItem(nomTableau);
+    var idString = id.toString();
+
+    if(tableauRecupere.length == 0){
+        localStorage.setItem(nomTableau,idString);
+    }
+    else {
+        // Récupération du tableau depuis le localStorage
+        var tableauRecupere = localStorage.getItem(nomTableau);
+        console.log("le tableau récupéré :");
+        console.log(tableauRecupere);
+
+        // Conversion de la chaîne de caractères en tableau
+        var tableauFinal = tableauRecupere.split(" ");
+        console.log(tableauFinal);
+        if(like== "liked"){
+            if(tableauFinal.includes(id)){
+                //déjà liké donc n'apparait pas
+            }
+            else {
+                //on ajouté l'élément liké
+                tableauFinal.push(idString);
+                var tableauEnChaine = tableauFinal.join(" ");
+                console.log("On ajoute le nouvel élément :");
+                console.log(tableauFinal);
+            }
+        }
+        else {
+            //suppression de l'élément déliké
+            console.log(id);
+
+            var filteredArray = tableauFinal.filter(function(element) {
+                return element !== idString;
+            });
+
+            console.log("On supprime l'élément :");
+            console.log(filteredArray);
+            // Conversion en chaîne de caractères JSON
+            tableauEnChaine = filteredArray.join(" ");
+            
+        }
+        localStorage.setItem(nomTableau,tableauEnChaine);
+    }
+}
+
 function likeOnPhoto(result){
+    if(localStorage.getItem("photoLiked")== null){
+        localStorage.setItem("photoLiked","")
+    }
     const likes = document.querySelectorAll(".fa-heart");
     likes.forEach((like)=> {
         like.addEventListener("click", function incrementLikes(){
@@ -169,6 +221,8 @@ function likeOnPhoto(result){
             blocText = parseInt(blocText, 10) + 1;
             bloc.querySelector("#numberLikes").textContent = blocText;
             like.classList.replace("fa-regular","fa-solid");
+            console.log(likes);
+            ajouterDansLocalStorage(likes[0].id, "liked");
             modifyPriceBloc(1);
           }
           else if (like.classList.contains("fa-solid")) {
@@ -177,6 +231,8 @@ function likeOnPhoto(result){
             blocText = parseInt(blocText, 10) - 1;
             bloc.querySelector("#numberLikes").textContent = blocText;
             like.classList.replace("fa-solid","fa-regular");
+            console.log(likes);
+            ajouterDansLocalStorage(likes[0].id, "unliked");
             modifyPriceBloc(-1);
           }      
         });
@@ -273,6 +329,7 @@ function loadVisionneuse(result) {
             closeVisionneuse();
             beforeMedia(result);
             nextMedia(result);
+            gestionnaireTouche(result);
         });   
     });
     
@@ -287,6 +344,11 @@ function closeVisionneuse(){
             visionneuse.remove();
         });
     }
+    document.addEventListener('keydown', function (){
+        if (event.keyCode === 27) {
+            visionneuse.remove();
+        }
+    }); 
 }
 
 /*Fonction qui prend le media précédent du tableau (result) sur la lightbox
@@ -297,22 +359,33 @@ function beforeMedia(result){
     const beforeArrow = document.getElementById("beforeMedia");
     let title = document.getElementById("titre");
     if (beforeArrow!=null){
-        beforeArrow.addEventListener("click", function beforeMediaElement(){
-            //console.log(title);
-            let actualValue = result.indexOf(result.find(item => item.title === title.textContent));
-            console.log("BEFORE : The actual value is " + actualValue);
-
-            if(actualValue-1 < 0){
-                actualValue = result.length-1;
-            }
-            else {
-                actualValue--;
-            }
-
-            changerMedia(result[actualValue], title);
+        beforeArrow.addEventListener("click", function (){
+            beforeMediaElement(result, title)
         });
-    } 
+    }
+    
+    document.addEventListener('keydown', function (){
+        if (event.keyCode === 37) {
+            console.log("gauche");
+            beforeMediaElement(result, title);
+            } 
+    });     
 }
+function beforeMediaElement(result, title){
+    //console.log(title);
+    let actualValue = result.indexOf(result.find(item => item.title === title.textContent));
+    console.log("BEFORE : The actual value is " + actualValue);
+
+    if(actualValue-1 < 0){
+        actualValue = result.length-1;
+    }
+    else {
+        actualValue--;
+    }
+
+    changerMedia(result[actualValue], title);
+}
+
 
 /*Fonction qui prend le media suivant du tableau (result) sur la lightbox
 Si l'élément est en position maximum (longueur du tableau). On le repasse tout en positon 0
@@ -322,21 +395,32 @@ function nextMedia(result){
     const nextArrow = document.getElementById("nextMedia");
     let title = document.getElementById("titre");
     if (nextArrow!=null){
-        nextArrow.addEventListener("click", function nextMediaElement(){
-
-            //On trouve l'index de l'élément
-            let actualValue = result.indexOf(result.find(item => item.title === title.textContent));
-            console.log("NEXT : The actual value is " + actualValue);
-
-            if(actualValue+1 >= result.length){
-                actualValue = 0;
-            }
-            else {
-                actualValue++;
-            }
-            changerMedia(result[actualValue], title);
+        nextArrow.addEventListener("click", function (){
+            nextMediaElement(result, title);
         });
-    } 
+    }
+
+    // Naviation par touche
+    document.addEventListener('keydown', function (){
+        if (event.keyCode === 39) {
+            nextMediaElement(result, title);
+        }
+    });    
+}
+
+function nextMediaElement(result, title){
+
+    //On trouve l'index de l'élément
+    let actualValue = result.indexOf(result.find(item => item.title === title.textContent));
+    console.log("NEXT : The actual value is " + actualValue);
+
+    if(actualValue+1 >= result.length){
+        actualValue = 0;
+    }
+    else {
+        actualValue++;
+    }
+    changerMedia(result[actualValue], title);
 }
 
 /* Fonction qui permet de changer le type de média entre photo et video en navigant dans la lightbox */ 

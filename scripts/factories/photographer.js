@@ -37,12 +37,33 @@ function mediaFactory(data){
 
      //Savoir dans quel dossier prendre l'image en sélectionnant le prénom du photographe
      //Récupérer le name du photographe + déduire le prénom dans penant tout ce qu'il y a avant l'espace
+     const nomTableau = "photoLiked";
       const name = document.getElementById("name");
       let text = name.textContent.split(' ');
       console.log(text)
       let media = "assets/"+text[0] ;
       let mediaElement="";
       const source = document.createElement("source");
+      let classLiked="fa-regular";
+      const idString = id.toString();
+      var like = likes;
+
+      var tableauRecupere = localStorage.getItem(nomTableau);
+      console.log(tableauRecupere);
+  
+      if(tableauRecupere != null){
+         var tableauFinal = tableauRecupere.split(" ");
+         console.log(tableauFinal);
+         
+         if(tableauFinal.includes(idString)){
+            classLiked="fa-solid";
+             //S'ils sont dans le tableau et donc liké, likes +1
+            like++;
+         };
+
+        
+     }      
+
       if(image==null){
          media = media +"/" + video;
          mediaElement = document.createElement("video");
@@ -76,12 +97,12 @@ function mediaFactory(data){
         figcaptionLikes.classList.add("numberLikes")
         
         const iconLikes = document.createElement("i");
-        iconLikes.classList.add("fa-regular","fa-heart");
+        iconLikes.classList.add(classLiked,"fa-heart");
         iconLikes.setAttribute("role","button");
         iconLikes.setAttribute("aria-label","Cliquez ici pour liker ce contenu")
         
         figcaptionChild.textContent=title;
-        figcaptionLikes.textContent=likes;
+        figcaptionLikes.textContent=like;
         figcaptionChild2.appendChild(figcaptionLikes);
         figcaptionChild2.appendChild(iconLikes);
         figcaption.classList.add("color-red");
@@ -92,5 +113,5 @@ function mediaFactory(data){
         article.appendChild(figure);
         return (article);
      }
-     return { id, photographerId, title, image, video, likes, date, price, mediaElement, getMediaCardDom }
+     return { id, photographerId, title, image, video, likes, date, price, mediaElement, classLiked, like, getMediaCardDom }
 }
