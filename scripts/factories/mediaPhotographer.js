@@ -27,6 +27,7 @@ function mediaFactory(data){
            classLiked="fa-solid";
             //S'ils sont dans le tableau et donc liké, likes +1
            like++;
+           console.log(like);
         };
     }      
 
