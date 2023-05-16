@@ -5,6 +5,7 @@ const emailModal = document.getElementById("email");
 const messageModal = document.getElementById("message");
 const contactBouton = document.getElementById("contactBouton");
 const buttonSubmit = document.getElementById("buttonSubmit");
+const fermetureModal = document.getElementById("fermeture-modal");
 
 let valideForm = {
     "nameModal":false,
@@ -51,6 +52,11 @@ function verifRegex($name, $regex){
       $name.style.border = "2px solid green";
     }
   }
+
+  fermetureModal.addEventListener("click",function(event){
+    event.preventDefault();
+    closeModal();
+  });
 
 //Verifier si tous les éléments du tableau de vérification
 function toutesLesValeursSontVraies(valideForm) {
