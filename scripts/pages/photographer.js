@@ -246,6 +246,7 @@ function modifyPriceBloc(numberofLikes){
     likesBloc.textContent = parseInt(likesBloc.textContent,10) + numberofLikes;
 }
 
+// Création de la lightbox
 // on récupère toutes les images de la page et on ajoute un listener au click sur celle-ci 
 // On récupère l'élément parent .media pour obtenir tout l'article et passer les éléments textuels + le tableau des result
 function loadVisionneuse(result) {
