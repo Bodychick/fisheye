@@ -246,6 +246,12 @@ form textarea, form input {
     flex-flow: row wrap;
     margin-bottom: 20px;
     margin-top: 20px;
+    font-size: 25px;
+    align-items: center;
+}
+.filter option:not(:first-child):not(:last-child) {
+    border-top:1px solid white;
+    border-bottom: 1px solid white;
 }
 
 #select_filter 
@@ -254,8 +260,9 @@ form textarea, form input {
     color: white;
     padding: 0px 20px;
     margin-left: 10px;
-    font-size: 1.20em;
-    border-radius: 20px;  
+    border-radius: 5px;  
+    font-size: 0.90em;
+    padding: 10px 20px;
 }
 
 @media (min-width: 770px) {
