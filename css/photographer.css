@@ -54,13 +54,13 @@
     width: 90%;
     margin: auto;
     display: grid;
-    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-columns:fr;
 }
 
 .image-visionneuse{
     object-fit: cover;
     max-height: 90vh;
-    max-width: 120vh;
+    max-width: 100%;
     margin: 0 auto;
 }
 #titre{
@@ -75,11 +75,13 @@
     margin: 0 auto;
     justify-content: center;
     flex-direction: column;
+    width: 100%;
 }
 .iconeVisionneuse {
     position: absolute;
     z-index: 1;
     top: 0;
+    right: 0;
 }
 
 
@@ -281,6 +283,7 @@ form textarea, form input {
         width: auto;
         object-fit: cover;
     }
+   
 }
 
 @media (min-width: 1024px) {
@@ -290,5 +293,20 @@ form textarea, form input {
     }
     .photograph-header{
         grid-template-columns: 1fr 1fr 1fr;
+    }
+    .image-visionneuse{
+        object-fit: cover;
+        max-height: 90vh;
+        max-width: 124vh;
+        margin: 0 auto;
+    }
+    .column-visionneuse{
+        width: auto;
+    }
+    .content-visionneuse {
+        width: 90%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1fr 5fr 1fr;
     }
 }
