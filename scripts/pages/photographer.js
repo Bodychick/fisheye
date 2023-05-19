@@ -56,28 +56,12 @@ async function displayData(medias) {
 
 /* Affichage du header avec les informations sur photographe */
 async function displayHeaderPhotographer(resultPhotographer) {
-    const image=document.getElementById("image_photographer");
-    const namePhotographer = document.getElementById("name");
-    const location = document.getElementById("location");
-    const tagline = document.getElementById("tagline");
-    const nomPhotographerModal = document.getElementById("nomPhotographerModal");
-    console.log(resultPhotographer);
-    nomPhotographerModal.textContent =  nomPhotographerModal.textContent +": " + resultPhotographer.name
-    namePhotographer.textContent=resultPhotographer.name;
-    location.textContent=resultPhotographer.city + ", " + resultPhotographer.country;
-    tagline.textContent=resultPhotographer.tagline;
-    image.src= `assets/photographers/${resultPhotographer.portrait}`;
-    image.alt="Photo de " + resultPhotographer.name;
-
-    // Création du bloc fixe avec les prix
-    const mainSection = document.getElementById("main");
-    const element = document.createElement("p");
-    element.setAttribute("id","price");
-    const price = document.createElement("span")
-    price.setAttribute("id","priceConteneur");
-    price.textContent= resultPhotographer.price +" € / jour"
-    element.appendChild(price);
-    mainSection.appendChild(element);
+    console.log(resultPhotographer)
+    resultPhotographer.forEach((photographe) => {
+        const photographeModel = photographerFactory(photographe);
+        console.log(photographeModel);
+        const headerPhotographer = photographeModel.getHeaderPhotographer();
+    });
 }
 
 /* En fonction du click sur select, renvoie un tableau des valeurs triées */
@@ -144,7 +128,8 @@ async function init(){
     
     let resultPhotographer = await photographers.filter(photographer =>photographer.id==id);
     console.log(resultPhotographer)
-    displayHeaderPhotographer(resultPhotographer[0]);
+    
+    displayHeaderPhotographer(resultPhotographer);
 
     //var medias = await getMediaByPhotographer();
     //console.log(medias)

@@ -29,6 +29,30 @@ function photographerFactory(data) {
         article.appendChild(tarif);
         return (article);
     }
-    return { name, picture, city, country, tagline, price, id, getUserCardDOM }
+    function getHeaderPhotographer(){
+        const image=document.getElementById("image_photographer");
+        const namePhotographer = document.getElementById("name");
+        const location = document.getElementById("location");
+        const tagline = document.getElementById("tagline");
+        const nomPhotographerModal = document.getElementById("nomPhotographerModal");
+        console.log(data);
+        nomPhotographerModal.textContent =  nomPhotographerModal.textContent +": " + data.name
+        namePhotographer.textContent=data.name;
+        location.textContent=data.city + ", " + data.country;
+        tagline.textContent=data.tagline;
+        image.src= `assets/photographers/${data.portrait}`;
+        image.alt="Photo de " + data.name;
+
+        // Création du bloc fixe avec les prix
+        const mainSection = document.getElementById("main");
+        const element = document.createElement("p");
+        element.setAttribute("id","price");
+        const price = document.createElement("span")
+        price.setAttribute("id","priceConteneur");
+        price.textContent= data.price +" € / jour"
+        element.appendChild(price);
+        mainSection.appendChild(element);
+    }
+    return { name, picture, city, country, tagline, price, id, getUserCardDOM,getHeaderPhotographer }
 }
 
