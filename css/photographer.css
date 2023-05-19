@@ -29,6 +29,10 @@
     border-radius: 5px;
     cursor: pointer;
 }
+.contact_button:hover, .contact_button:focus{
+    background-color: #DB8876;
+    color: black;
+}
 
 .fond-visionneuse {
     position:fixed;
@@ -41,13 +45,13 @@
 }
 
 .content-visionneuse i{
-    font-size: 2em;
+    font-size: 2.5em;
     cursor: pointer;
+    color: #901C1C;
 }
 
 .content-visionneuse {
     width: 90%;
-    height: 800px;
     margin: auto;
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
@@ -55,25 +59,29 @@
 
 .image-visionneuse{
     object-fit: cover;
-    height: 80%;
-    width: 100%;
+    max-height: 90vh;
+    max-width: 120vh;
     margin: 0 auto;
+}
+#titre{
+    margin: 0;
+    text-align: left;
+    font-size: medium;
 }
 
 .column-visionneuse{
     position: relative;
     display: flex;
-    align-items: center;
+    margin: 0 auto;
     justify-content: center;
     flex-direction: column;
-    height:800px;
 }
 .iconeVisionneuse {
     position: absolute;
     z-index: 1;
     top: 0;
-    color: #901C1C;
 }
+
 
 .modal {
     font-size: 0.90em;
@@ -89,12 +97,7 @@
     overflow-y: scroll;
     margin: auto;
 }
-#name:valid {
-    border:1px solid green;
-}
-#name:invalid {
-    border:1px solid red;
-}
+
 
 .modal header {
     justify-content: space-between;
@@ -120,6 +123,12 @@
     text-align: center;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+#name{
+    color : #D3573C;
+    font-size: 36px;
+
 }
 
 form {
@@ -209,8 +218,8 @@ form textarea, form input {
     margin: auto;
 }
 #image_photographer{
-    width: 130px;
-    height: 130px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -236,6 +245,7 @@ form textarea, form input {
     display: flex;
     flex-flow: row wrap;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 #select_filter 
