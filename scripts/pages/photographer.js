@@ -67,7 +67,7 @@ async function displayHeaderPhotographer(resultPhotographer) {
     location.textContent=resultPhotographer.city + ", " + resultPhotographer.country;
     tagline.textContent=resultPhotographer.tagline;
     image.src= `assets/photographers/${resultPhotographer.portrait}`;
-    image.alt="Photo de " + namePhotographer;
+    image.alt="Photo de " + resultPhotographer.name;
 
     // Création du bloc fixe avec les prix
     const mainSection = document.getElementById("main");
