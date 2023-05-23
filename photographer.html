@@ -10,7 +10,7 @@
   </head>
   <body>
     <header>
-      <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="logo Fisheye" aria-label="Voir la liste de tous les photographes"/></a>
+      <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page" aria-label="Voir la liste de tous les photographes"/></a>
     </header>
     <main id="main">
       <div class="photograph-header">
@@ -39,25 +39,25 @@
     <div id="contact_modal">
 			<div class="modal">
 				<header>
-          <h2 id="nomPhotographerModal">Contactez-moi</h2>
+          <h2 id="nomPhotographerModal" aria-labelledby="tac">Contactez-moi</h2>
           <a href="" alt="fermeture de la modal" id="fermeture-modal"><img src="assets/icons/close.svg" alt="Fermez la modale de contact"/></a>
         </header>
 				<form id="form-modal">
 					<div>
-						<label for="nameModal">Prénom</label>
-						<input type="text" id="nameModal" name="nameModal"/>
+						<label for="nameModal" id="nameModalLabel">Prénom</label>
+						<input type="text" id="nameModal" name="nameModal" aria-labelledby="nameModalLabel"/>
 					</div>
           <div>
-						<label for="lastNameModal">Nom</label>
-						<input type="text" id="lastNameModal" name="lastNameModal"/>
+						<label for="lastNameModal" id="lastNameLabel" >Nom</label>
+						<input type="text" id="lastNameModal" name="lastNameModal" aria-labelledby="lastNameLabel"/>
 					</div>
           <div>
-						<label for="email">Email</label>
-						<input type="email" id="email" name="email"/>
+						<label for="email" id="emailLabel">Email</label>
+						<input type="email" id="email" name="email" aria-labelledby="emailLabel"/>
 					</div>
           <div>
-						<label for="message">Votre message</label>
-						<textarea id="message" name="message" rows="4" cols="50" ></textarea>
+						<label for="message" id="messageLabel">Votre message</label>
+						<textarea id="message" name="message" rows="4" cols="50" aria-labelledby="messageLabel"></textarea>
 					</div>
           <input type="submit" class="contact_button" value="Envoyer" id="buttonSubmit">
 				</form>

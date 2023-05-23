@@ -34,7 +34,7 @@
     color: black;
 }
 
-.fond-visionneuse {
+.fond-Lightbox {
     position:fixed;
     top: 0;
     left: 0;
@@ -44,20 +44,20 @@
     background-color: white;
 }
 
-.content-visionneuse i{
+.content-Lightbox i{
     font-size: 2.5em;
     cursor: pointer;
     color: #901C1C;
 }
 
-.content-visionneuse {
+.content-Lightbox {
     width: 90%;
     margin: auto;
     display: grid;
     grid-template-columns:fr;
 }
 
-.image-visionneuse{
+.image-Lightbox{
     object-fit: cover;
     max-height: 90vh;
     max-width: 100%;
@@ -69,7 +69,7 @@
     font-size: medium;
 }
 
-.column-visionneuse{
+.column-Lightbox{
     position: relative;
     display: flex;
     margin: 0 auto;
@@ -77,7 +77,7 @@
     flex-direction: column;
     width: 100%;
 }
-.iconeVisionneuse {
+.iconeLightbox {
     position: absolute;
     z-index: 1;
     top: 0;
@@ -300,16 +300,16 @@ form textarea, form input {
     .photograph-header{
         grid-template-columns: 1fr 1fr 1fr;
     }
-    .image-visionneuse{
+    .image-Lightbox{
         object-fit: cover;
         max-height: 90vh;
         max-width: 124vh;
         margin: 0 auto;
     }
-    .column-visionneuse{
+    .column-Lightbox{
         width: auto;
     }
-    .content-visionneuse {
+    .content-Lightbox {
         width: 90%;
         margin: auto;
         display: grid;

@@ -8,7 +8,7 @@ async function getPhotographers() {
         return response.json();
     })
     .then(data => {
-        photographers2 = data;
+        var photographers2 = data;
         return photographers2; 
     })
     .catch(error => {
@@ -50,7 +50,7 @@ async function displayData(medias) {
         likes.appendChild(iconLikes);
         priceConteneur.insertBefore(likes, priceConteneur.firstChild);
     }
-    loadVisionneuse(medias);
+    loadLightbox(medias);
     likeOnPhoto(medias);    
 }
 
@@ -60,7 +60,7 @@ async function displayHeaderPhotographer(resultPhotographer) {
     resultPhotographer.forEach((photographe) => {
         const photographeModel = photographerFactory(photographe);
         console.log(photographeModel);
-        const headerPhotographer = photographeModel.getHeaderPhotographer();
+        photographeModel.getHeaderPhotographer();
     });
 }
 
@@ -98,7 +98,6 @@ async function triMedias(data){
     console.log("en arrivant dans la fonction trimedia")
     console.log(data)
     const selectTri = document.getElementById("select_filter");
-    const articles = document.getElementsByClassName("media");
     selectTri.addEventListener("input", function(){
         let value = selectTri.value;
         console.log(value);
@@ -114,7 +113,6 @@ async function init(){
     // récupère l'URL
     const url = new URL(window.location.href); 
     const params = new URLSearchParams(url.search);
-    const articles = document.getElementsByClassName("media");
     //const image = document.getElementsByClassName("image");
     // Récupérer la valeur de l'id
     const id = params.get('id');
@@ -150,8 +148,6 @@ function ajouterDansLocalStorage(id, like){
         localStorage.setItem(nomTableau,idString);
     }
     else {
-        // Récupération du tableau depuis le localStorage
-        var tableauRecupere = localStorage.getItem(nomTableau);
         console.log("le tableau récupéré :");
         console.log(tableauRecupere);
 
@@ -195,13 +191,13 @@ function likeOnPhoto(result){
     if(document.getElementsByName("like")){
         const likeLiens = document.getElementsByName("like");
         likeLiens.forEach((lien) => {
-            lien.addEventListener("click",function(event){
+            lien.addEventListener("click",function(){
                 const like = lien.firstChild; 
                 console.log(lien.firstChild);
                 const article = like.closest('.media');  
                 const title = article.querySelector('figcaption span:first-child').textContent;
                 var likes = result.filter(resul=> resul.title==title);
-                var index = result.indexOf(result.find(item => item.title === title));
+                //var index = result.indexOf(result.find(item => item.title === title));
 
                 if(like.classList.contains("fa-regular"))
                 {
@@ -229,6 +225,7 @@ function likeOnPhoto(result){
     }
 }
 
+/*  Change le nombre de like total du photographe */
 function modifyPriceBloc(numberofLikes){
     const likesBloc = document.getElementById("likesValue");
     console.log(likesBloc.textContent);
@@ -238,12 +235,12 @@ function modifyPriceBloc(numberofLikes){
 // Création de la lightbox
 // on récupère toutes les images de la page et on ajoute un listener au click sur celle-ci 
 // On récupère l'élément parent .media pour obtenir tout l'article et passer les éléments textuels + le tableau des result
-function loadVisionneuse(result) {
-    console.log("Chargement de la visionneuse "+result);
-    let images = Array.from(document.getElementsByClassName("lienVisionneuse"));
+function loadLightbox(result) {
+    console.log("Chargement de la Lightbox "+result);
+    let images = Array.from(document.getElementsByClassName("lienLightbox"));
     images = Array.from(images);
     images.forEach((image) => {
-        image.addEventListener("click",function createVisionneuse(){
+        image.addEventListener("click",function createLightbox(){
             var article = image.closest('.media');
             console.log(article);
             const valuetitre = article.querySelector('figcaption span:first-child').textContent;
@@ -254,7 +251,7 @@ function loadVisionneuse(result) {
             if (imageSrc == null) {
                 videoSrc = videoSrc.getAttribute("src");
                 media = document.createElement("video");
-                media.classList.add("image-visionneuse");
+                media.classList.add("image-Lightbox");
                 media.setAttribute("controls","");
                 const source  = document.createElement("source");
                 source.setAttribute("alt", valuetitre);
@@ -266,29 +263,30 @@ function loadVisionneuse(result) {
             else {
                 imageSrc = imageSrc.getAttribute("src");
                 media = document.createElement("img");
-                media.classList.add("image-visionneuse");
+                media.classList.add("image-Lightbox");
                 media.setAttribute("id","mediaSource");
                 media.setAttribute("alt",valuetitre);
                 media.src=imageSrc;
                 console.log(media);
             }
 
-            const fondVisionneuse = document.createElement("div");
-            fondVisionneuse.classList.add("fond-visionneuse");
-            fondVisionneuse.setAttribute("id","fond-visionneuse");
-            const contentVisionneuse =document.createElement("div");
-            contentVisionneuse.classList.add("content-visionneuse");
+            const fondLightbox = document.createElement("div");
+            fondLightbox.classList.add("fond-Lightbox");
+            fondLightbox.setAttribute("id","fond-Lightbox");
+            const contentLightbox =document.createElement("div");
+            contentLightbox.classList.add("content-Lightbox");
+            contentLightbox.setAttribute("aria-label","Vue rapprochée de l'image")
             const column1 = document.createElement("div");
             const column2 = document.createElement("div");
             const column3 = document.createElement("div");
-            column1.classList.add("column-visionneuse");
-            column2.classList.add("column-visionneuse");
-            column3.classList.add("column-visionneuse");
+            column1.classList.add("column-Lightbox");
+            column2.classList.add("column-Lightbox");
+            column3.classList.add("column-Lightbox");
             const icone = document.createElement("i");
             icone.classList.add("fa-solid","fa-xmark");
-            icone.setAttribute("id","closeVisionneuse");
+            icone.setAttribute("id","closeLightbox");
             icone.setAttribute("role","button");
-            icone.setAttribute("aria-label", "Cliquez pour fermer la lightbox");
+            icone.setAttribute("aria-label", "Fermer la lightbox");
 
             const backArrow = document.createElement("i");
             const forwardArrow = document.createElement("i");
@@ -296,28 +294,28 @@ function loadVisionneuse(result) {
             backArrow.classList.add("fa-solid","fa-angle-left");
             backArrow.setAttribute("id","beforeMedia");
             backArrow.setAttribute("role","button");
-            backArrow.setAttribute("aria-label", "Cliquez pour afficher le média précédent");
+            backArrow.setAttribute("aria-label", "Média précédent");
             forwardArrow.classList.add("fa-solid","fa-angle-right");
             forwardArrow.setAttribute("id","nextMedia");
             forwardArrow.setAttribute("role","button");
-            forwardArrow.setAttribute("aria-label", "Cliquez pour afficher le média suivant");
+            forwardArrow.setAttribute("aria-label", "Média suivant");
             const titre = document.createElement("h1");
             titre.textContent=valuetitre;
             titre.setAttribute("id","titre")
-            icone.classList.add("iconeVisionneuse");
+            icone.classList.add("iconeLightbox");
             column2.appendChild(media);
             column2.appendChild(titre);
             column1.appendChild(backArrow);
             column3.appendChild(forwardArrow);
             column3.appendChild(icone);
-            contentVisionneuse.appendChild(column1);
-            contentVisionneuse.appendChild(column2);
-            contentVisionneuse.appendChild(column3);
-            fondVisionneuse.appendChild(contentVisionneuse);
-            if(document.getElementById("fond-visionneuse")==null){
-                main.appendChild(fondVisionneuse);
+            contentLightbox.appendChild(column1);
+            contentLightbox.appendChild(column2);
+            contentLightbox.appendChild(column3);
+            fondLightbox.appendChild(contentLightbox);
+            if(document.getElementById("fond-Lightbox")==null){
+                main.appendChild(fondLightbox);
             }    
-            closeVisionneuse();
+            closeLightbox();
             beforeMedia(result);
             nextMedia(result);
         });   
@@ -326,17 +324,17 @@ function loadVisionneuse(result) {
 }
 
 /* Fonction qui permet la fermeture de la lightbox */
-function closeVisionneuse(){
-    const visionneuse  = document.getElementById("fond-visionneuse");
-    const closeVisionneuse = document.getElementById("closeVisionneuse");
-    if (closeVisionneuse != null){
-        closeVisionneuse.addEventListener("click", function fermerVisionneuse(){
-            visionneuse.remove();
+function closeLightbox(){
+    const Lightbox  = document.getElementById("fond-Lightbox");
+    const closeLightbox = document.getElementById("closeLightbox");
+    if (closeLightbox != null){
+        closeLightbox.addEventListener("click", function fermerLightbox(){
+            Lightbox.remove();
         });
     }
     document.addEventListener('keydown', function (){
         if (event.keyCode === 27) {
-            visionneuse.remove();
+            Lightbox.remove();
         }
     }); 
 }
@@ -417,7 +415,7 @@ function nextMediaElement(result, title){
 function changerMedia (result, title){
     title.textContent=result.title;
     console.log(result);
-    let media = document.querySelector(".image-visionneuse");
+    let media = document.querySelector(".image-Lightbox");
     const name = document.getElementById("name");
     let text = name.textContent.split(' ');
     let urlMedia = "assets/"+text[0] ;
@@ -427,7 +425,7 @@ function changerMedia (result, title){
         console.log("C'est une video ET L'ANCIEN MEDIA' EST : "+media.tagName)
         if (media.tagName=="IMG"){
             let newMedia = document.createElement("video");
-            newMedia.classList.add("image-visionneuse");
+            newMedia.classList.add("image-Lightbox");
             newMedia.setAttribute("controls","");
             const source  = document.createElement("source");
             source.setAttribute("id","mediaSource");
@@ -447,7 +445,7 @@ function changerMedia (result, title){
         if (media.tagName == "VIDEO") {
             // possible dans dupliquer en créant fonction commune avec ligne 178
             let newMedia = document.createElement("img");
-            newMedia.classList.add("image-visionneuse");
+            newMedia.classList.add("image-Lightbox");
             newMedia.setAttribute("id","mediaSource");
             newMedia.src=urlMedia+"/"+result.image;
             console.log(newMedia);

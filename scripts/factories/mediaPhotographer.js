@@ -15,7 +15,8 @@ function mediaFactory(data){
      var like = likes;
      const lien = document.createElement("a");
      lien.href="#";
-     lien.classList.add("lienVisionneuse");
+     lien.setAttribute("alt",title+", vue rapprochée");
+     lien.classList.add("lienLightbox");
      var tableauRecupere = localStorage.getItem(nomTableau);
      console.log(tableauRecupere);
  
@@ -28,7 +29,7 @@ function mediaFactory(data){
             //S'ils sont dans le tableau et donc liké, likes +1
            like++;
            console.log(like);
-        };
+        }
     }      
 
      if(image==null){
@@ -52,7 +53,7 @@ function mediaFactory(data){
         lien.appendChild(mediaElement);
      }
 
-     // Savoir si c'est une vidéo ou une image
+
 
     function getMediaCardDom() {
        const article = document.createElement('article'); 
@@ -73,7 +74,7 @@ function mediaFactory(data){
        const iconLikes = document.createElement("i");
        iconLikes.classList.add(classLiked,"fa-heart","color-red");
        iconLikes.setAttribute("role","button");
-       iconLikes.setAttribute("aria-label","Cliquez ici pour liker ce contenu");
+       iconLikes.setAttribute("aria-label","likes");
        lienLike.appendChild(iconLikes);
        
        figcaptionChild.textContent=title;
