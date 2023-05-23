@@ -179,6 +179,12 @@ form textarea, form input {
     background-color: #901C1C;
     border-radius: 10px;
 }
+.buttonLike{
+    background-color: white;
+    border: none;
+    font-size: 16px;
+}
+
 .medias_section figure {
     margin: 0;
     padding: 0;

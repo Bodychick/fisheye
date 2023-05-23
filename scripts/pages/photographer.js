@@ -192,37 +192,41 @@ function likeOnPhoto(result){
     if(localStorage.getItem("photoLiked")== null){
         localStorage.setItem("photoLiked","")
     }
-    const likes = document.querySelectorAll(".fa-heart");
-    likes.forEach((like)=> {
-        like.addEventListener("click", function incrementLikes(){
-          const article = like.closest('.media');  
-          const title = article.querySelector('figcaption span:first-child').textContent;
-          var likes = result.filter(resul=> resul.title==title);
-          index = result.indexOf(result.find(item => item.title === title));
+    if(document.getElementsByName("like")){
+        const likeLiens = document.getElementsByName("like");
+        likeLiens.forEach((lien) => {
+            lien.addEventListener("click",function(event){
+                const like = lien.firstChild; 
+                console.log(lien.firstChild);
+                const article = like.closest('.media');  
+                const title = article.querySelector('figcaption span:first-child').textContent;
+                var likes = result.filter(resul=> resul.title==title);
+                index = result.indexOf(result.find(item => item.title === title));
 
-          if(like.classList.contains("fa-regular"))
-          {
-            var bloc = like.parentNode.parentNode;
-            var blocText = bloc.querySelector("#numberLikes").textContent;
-            blocText = parseInt(blocText, 10) + 1;
-            bloc.querySelector("#numberLikes").textContent = blocText;
-            like.classList.replace("fa-regular","fa-solid");
-            console.log(likes);
-            ajouterDansLocalStorage(likes[0].id, "liked");
-            modifyPriceBloc(1);
-          }
-          else if (like.classList.contains("fa-solid")) {
-            var bloc = like.parentNode.parentNode;
-            var blocText = bloc.querySelector("#numberLikes").textContent;
-            blocText = parseInt(blocText, 10) - 1;
-            bloc.querySelector("#numberLikes").textContent = blocText;
-            like.classList.replace("fa-solid","fa-regular");
-            console.log(likes);
-            ajouterDansLocalStorage(likes[0].id, "unliked");
-            modifyPriceBloc(-1);
-          }      
-        });
-    });
+                if(like.classList.contains("fa-regular"))
+                {
+                    var bloc = like.parentNode.parentNode;
+                    var blocText = bloc.querySelector("#numberLikes").textContent;
+                    blocText = parseInt(blocText, 10) + 1;
+                    bloc.querySelector("#numberLikes").textContent = blocText;
+                    like.classList.replace("fa-regular","fa-solid");
+                    console.log(likes);
+                    ajouterDansLocalStorage(likes[0].id, "liked");
+                    modifyPriceBloc(1);
+                }
+                else if (like.classList.contains("fa-solid")) {
+                    var bloc = like.parentNode.parentNode;
+                    var blocText = bloc.querySelector("#numberLikes").textContent;
+                    blocText = parseInt(blocText, 10) - 1;
+                    bloc.querySelector("#numberLikes").textContent = blocText;
+                    like.classList.replace("fa-solid","fa-regular");
+                    console.log(likes);
+                    ajouterDansLocalStorage(likes[0].id, "unliked");
+                    modifyPriceBloc(-1);
+                }  
+            });
+        })
+    }
 }
 
 function modifyPriceBloc(numberofLikes){

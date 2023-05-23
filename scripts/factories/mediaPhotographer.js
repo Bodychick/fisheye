@@ -65,17 +65,21 @@ function mediaFactory(data){
        const figcaptionLikes = document.createElement("span");
   
        figcaptionLikes.setAttribute("id","numberLikes");
-       figcaptionLikes.classList.add("numberLikes")
+       figcaptionLikes.classList.add("numberLikes");
        
+       const lienLike = document.createElement("button");
+       lienLike.classList.add("buttonLike");
+       lienLike.setAttribute("name","like");
        const iconLikes = document.createElement("i");
-       iconLikes.classList.add(classLiked,"fa-heart");
+       iconLikes.classList.add(classLiked,"fa-heart","color-red");
        iconLikes.setAttribute("role","button");
-       iconLikes.setAttribute("aria-label","Cliquez ici pour liker ce contenu")
+       iconLikes.setAttribute("aria-label","Cliquez ici pour liker ce contenu");
+       lienLike.appendChild(iconLikes);
        
        figcaptionChild.textContent=title;
        figcaptionLikes.textContent=like;
        figcaptionChild2.appendChild(figcaptionLikes);
-       figcaptionChild2.appendChild(iconLikes);
+       figcaptionChild2.appendChild(lienLike);
        figcaption.classList.add("color-red");
        figcaption.appendChild(figcaptionChild);
        figcaption.appendChild(figcaptionChild2);
@@ -84,5 +88,6 @@ function mediaFactory(data){
        article.appendChild(figure);
        return (article);
     }
+   
     return { id, photographerId, title, image, video, likes, date, price, lien, classLiked, like, getMediaCardDom }
 }
