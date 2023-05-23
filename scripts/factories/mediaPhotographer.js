@@ -38,7 +38,6 @@ function mediaFactory(data){
         //mediaElement.setAttribute("controls","");
         mediaElement.classList.add("image")
         mediaElement.setAttribute("alt", title);
-        mediaElement.setAttribute("aria-label","Cliquez sur la vidéo pour l'agrandir"); 
         source.setAttribute("src",media);
         mediaElement.appendChild(source);
         lien.appendChild(mediaElement);
@@ -49,7 +48,6 @@ function mediaFactory(data){
         mediaElement.classList.add("image")
         mediaElement.setAttribute("src", media);
         mediaElement.setAttribute("alt", title);
-        mediaElement.setAttribute("aria-label","Cliquez sur l'image pour l'agrandir");
         lien.appendChild(mediaElement);
      }
 
@@ -70,11 +68,10 @@ function mediaFactory(data){
        
        const lienLike = document.createElement("button");
        lienLike.classList.add("buttonLike");
+       lienLike.setAttribute("aria-label","like");
        lienLike.setAttribute("name","like");
        const iconLikes = document.createElement("i");
        iconLikes.classList.add(classLiked,"fa-heart","color-red");
-       iconLikes.setAttribute("role","button");
-       iconLikes.setAttribute("aria-label","likes");
        lienLike.appendChild(iconLikes);
        
        figcaptionChild.textContent=title;
