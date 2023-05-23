@@ -4,5 +4,8 @@
   },
   "devDependencies": {
     "yorkie": "^2.0.0"
+  },
+  "scripts": {
+    "lint": "eslint --max-warnings=0 ."
   }
 }

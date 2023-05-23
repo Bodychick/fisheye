@@ -201,7 +201,7 @@ function likeOnPhoto(result){
                 const article = like.closest('.media');  
                 const title = article.querySelector('figcaption span:first-child').textContent;
                 var likes = result.filter(resul=> resul.title==title);
-                index = result.indexOf(result.find(item => item.title === title));
+                var index = result.indexOf(result.find(item => item.title === title));
 
                 if(like.classList.contains("fa-regular"))
                 {
