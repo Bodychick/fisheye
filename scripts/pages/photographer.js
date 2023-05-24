@@ -138,6 +138,7 @@ async function init(){
     displayData(result);
 }
 
+//Ajouter dans le local storage les médias likés
 function ajouterDansLocalStorage(id, like){
     const nomTableau = "photoLiked";
     // Récupération du tableau depuis le localStorage
@@ -184,6 +185,7 @@ function ajouterDansLocalStorage(id, like){
     }
 }
 
+//permet de détecter si l'utilisateur veut liker une photo + modifcation de l'afficjhage et du nombre de like
 function likeOnPhoto(result){
     if(localStorage.getItem("photoLiked")== null){
         localStorage.setItem("photoLiked","")
@@ -339,8 +341,8 @@ function closeLightbox(){
     }); 
 }
 
-/*Fonction qui prend le media précédent du tableau (result) sur la lightbox
-Si l'élément est en position 0. On le repasse tout en haut du tableau
+/*
+Détecte si l'utilisateuur veut afficher le média précédent (clavier/click)
 */ 
 function beforeMedia(result){
     console.log(result)
@@ -359,6 +361,7 @@ function beforeMedia(result){
             } 
     });     
 }
+/* Trouve le média précédent à afficher */
 function beforeMediaElement(result, title){
     //console.log(title);
     let actualValue = result.indexOf(result.find(item => item.title === title.textContent));
@@ -375,8 +378,8 @@ function beforeMediaElement(result, title){
 }
 
 
-/*Fonction qui prend le media suivant du tableau (result) sur la lightbox
-Si l'élément est en position maximum (longueur du tableau). On le repasse tout en positon 0
+/*
+Détecte si l'utilisateur veut l'élément suivant au clic/clavier
 */ 
 function nextMedia(result){
     console.log(result)
@@ -396,8 +399,8 @@ function nextMedia(result){
     });    
 }
 
+//Trouve le média suivant à afficher
 function nextMediaElement(result, title){
-
     //On trouve l'index de l'élément
     let actualValue = result.indexOf(result.find(item => item.title === title.textContent));
     console.log("NEXT : The actual value is " + actualValue);
