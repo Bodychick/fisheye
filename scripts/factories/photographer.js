@@ -30,19 +30,21 @@ function photographerFactory(data) {
         return (article);
     }
     function getHeaderPhotographer(){
-        const image=document.getElementById("image_photographer");
+        const imageBloc=document.getElementById("photo-photographe");
         const namePhotographer = document.getElementById("name");
         const location = document.getElementById("location");
         const tagline = document.getElementById("tagline");
         const nomPhotographerModal = document.getElementById("nomPhotographerModal");
+        const image = document.createElement("img");
         console.log(data);
-        nomPhotographerModal.textContent =  nomPhotographerModal.textContent +": " + data.name
+        nomPhotographerModal.textContent =  nomPhotographerModal.textContent +": " + data.name;
         namePhotographer.textContent=data.name;
         location.textContent=data.city + ", " + data.country;
         tagline.textContent=data.tagline;
         image.src= `assets/photographers/${data.portrait}`;
         image.alt="Photo de " + data.name;
-
+        image.setAttribute("id","image_photographer");
+        imageBloc.appendChild(image);
         // Création du bloc fixe avec les prix
         const mainSection = document.getElementById("main");
         const element = document.createElement("p");
