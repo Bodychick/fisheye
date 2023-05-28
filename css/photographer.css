@@ -100,6 +100,11 @@
     margin: auto;
 }
 
+#fermeture-modal{
+    background-color: #DB8876;
+    border: none;
+}
+
 
 .modal header {
     justify-content: space-between;
