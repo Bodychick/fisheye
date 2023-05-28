@@ -180,7 +180,7 @@ form textarea, form input {
 }
 .medias_section article {
     width: 100%;
-    height:330px;
+    height:350px;
     background-color: #901C1C;
     border-radius: 10px;
 }
@@ -212,7 +212,7 @@ form textarea, form input {
 
 .image{
     object-fit: cover;
-    height: 330px;
+    height: 350px;
     width: 100%;
     border-radius: 10px;
 }
