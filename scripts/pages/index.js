@@ -1,4 +1,6 @@
+    /* eslint-disable */
     async function getPhotographers() {
+        //Récupère les photographes depuis le fichier donné
         let photographers2=[];
         return fetch('data/photographers.json')
         .then(response => {
@@ -15,6 +17,7 @@
         // et bien retourner le tableau photographers seulement une fois récupéré
     }
 
+   //Affiche les photographes
    async function displayData(photographers) {
         const photographersSection = document.querySelector(".photographer_section");
         console.log(photographers);
@@ -26,6 +29,7 @@
         });
     };
 
+    //Initialisation des valeurs en chargement de la page
     async function init() {
         // Récupère les datas des photographes
         var photographers = await getPhotographers();

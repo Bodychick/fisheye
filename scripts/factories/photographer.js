@@ -1,9 +1,11 @@
+//factoryMethod d'un pohotographe
 function photographerFactory(data) {
     //const {name, portrait } = data;
     const {name, portrait, city, country, tagline, price, id } = data;
 
     const picture = `assets/photographers/${portrait}`;
 
+    //Function de création d'un fiche photographe
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         const img = document.createElement( 'img' );
@@ -29,6 +31,8 @@ function photographerFactory(data) {
         article.appendChild(tarif);
         return (article);
     }
+
+    //Affichage du header Photograph
     function getHeaderPhotographer(){
         const imageBloc=document.getElementById("photo-photographe");
         const namePhotographer = document.getElementById("name");

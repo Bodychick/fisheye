@@ -40,6 +40,7 @@ messageModal.addEventListener("input", function(){
   verifRegex(messageModal,regexMessage);
 })
 
+// Vérification des champs en fonction de chaque regex
 function verifRegex($name, $regex){
     console.log($regex.test($name.value));
     if ($regex.test($name.value)==false)
@@ -83,6 +84,7 @@ function closeModal() {
 
 buttonSubmit.addEventListener("click", formModalValidation)
 
+//Validation de la modal de contact
 function formModalValidation(event){
   console.log(valideForm);
   verifRegex(nameModal, regexName);

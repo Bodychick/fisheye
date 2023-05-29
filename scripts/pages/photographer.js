@@ -1,7 +1,6 @@
 
-/*
-    Récupération des données contenus dans le fichier json
-*/ 
+/*Récupération des données contenus dans le fichier json*/ 
+/* eslint-disable */
 async function getPhotographers() {
     return fetch('data/photographers.json')
     .then(response => {
@@ -93,7 +92,7 @@ function switchTri(data,value){
     }
 }
 
-/* Permet de faire le tri au click sur le select */ 
+/* Permet de faire le tri des médias au click sur le select */ 
 async function triMedias(data){
     console.log("en arrivant dans la fonction trimedia")
     console.log(data)
@@ -113,7 +112,6 @@ async function init(){
     // récupère l'URL
     const url = new URL(window.location.href); 
     const params = new URLSearchParams(url.search);
-    //const image = document.getElementsByClassName("image");
     // Récupérer la valeur de l'id
     const id = params.get('id');
     console.log(id)
@@ -129,8 +127,6 @@ async function init(){
     
     displayHeaderPhotographer(resultPhotographer);
 
-    //var medias = await getMediaByPhotographer();
-    //console.log(medias)
     let result = medias.filter(media => media.photographerId==id);
     // Récupérer les données filtrées
     result = await triMedias(result);

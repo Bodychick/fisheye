@@ -1,8 +1,8 @@
+/* eslint-disable */
 function mediaFactory(data){
+   //MediaFactory des médias
     const {id, photographerId, title, image, video, likes, date, price } = data;
 
-    //Savoir dans quel dossier prendre l'image en sélectionnant le prénom du photographe
-    //Récupérer le name du photographe + déduire le prénom dans penant tout ce qu'il y a avant l'espace
     const nomTableau = "photoLiked";
      const name = document.getElementById("name");
      let text = name.textContent.split(' ');
@@ -52,7 +52,7 @@ function mediaFactory(data){
      }
 
 
-
+     //Affichage d'une liste de médias
     function getMediaCardDom() {
        const article = document.createElement('article'); 
        article.classList.add("media");
