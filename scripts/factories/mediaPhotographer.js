@@ -1,6 +1,6 @@
 /* eslint-disable */
 function mediaFactory(data){
-   //MediaFactory des médias
+   //factoryMethod des médias
     const {id, photographerId, title, image, video, likes, date, price } = data;
 
     const nomTableau = "photoLiked";

@@ -1,3 +1,4 @@
+//Récupération des champs
 const formModal = document.getElementById("form-modal");
 const nameModal = document.getElementById("nameModal");
 const lastNameModal = document.getElementById("lastNameModal");
