@@ -12,6 +12,9 @@
     background-color: rgba(255, 255, 255, 0.466);
 }
 
+#lien-logo{
+    margin: auto;
+}
 .photograph-header {
     background-color: #FAFAFA;
     margin: 0 100px;
@@ -90,7 +93,7 @@
     height: 100%;
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -107,7 +110,9 @@
 
 
 .modal header {
+    display: flex;
     justify-content: space-between;
+    flex-direction: column-reverse;
     width: 100%;
     height: auto !important;
 }
@@ -295,6 +300,12 @@ form textarea, form input {
     header img{
         width: auto;
         object-fit: cover;
+    }
+    .modal {
+        width: 50%;
+    }
+    .modal header {
+        flex-direction: row;
     }
    
 }
