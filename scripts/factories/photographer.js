@@ -20,11 +20,14 @@ function photographerFactory(data) {
         const lieu = document.createElement("p");
         lieu.textContent=city +", "+ country;
         lieu.classList.add("city");
+        lieu.setAttribute("tabindex","0");
         const quote = document.createElement("p");
         quote.textContent=tagline;
+        quote.setAttribute("tabindex","0");
         const tarif = document.createElement("p");
         tarif.textContent=price +"€/jour";
         tarif.classList.add("price");
+        tarif.setAttribute("tabindex","0");
         article.appendChild(lien);
         article.appendChild(lieu);
         article.appendChild(quote);
@@ -43,8 +46,11 @@ function photographerFactory(data) {
         console.log(data);
         nomPhotographerModal.textContent =  nomPhotographerModal.textContent +": " + data.name;
         namePhotographer.textContent=data.name;
+        namePhotographer.setAttribute("tabindex","0");
         location.textContent=data.city + ", " + data.country;
+        location.setAttribute("tabindex","0");
         tagline.textContent=data.tagline;
+        tagline.setAttribute("tabindex","0");
         image.src= `assets/photographers/${data.portrait}`;
         image.alt="Photo de " + data.name;
         image.setAttribute("id","image_photographer");
