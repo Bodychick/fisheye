@@ -305,7 +305,8 @@ function loadLightbox(result) {
             mediaSuiv.setAttribute("tabindex","0");
             const titre = document.createElement("h1");
             titre.textContent=valuetitre;
-            titre.setAttribute("id","titre")
+            titre.setAttribute("id","titre");
+            titre.setAttribute("tabindex","0");
             icone.classList.add("iconeLightbox");
             column2.appendChild(media);
             column2.appendChild(titre);

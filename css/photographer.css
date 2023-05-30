@@ -302,7 +302,7 @@ form textarea, form input {
         object-fit: cover;
     }
     .modal {
-        width: 50%;
+        width: 80%;
     }
     .modal header {
         flex-direction: row;
@@ -326,6 +326,9 @@ form textarea, form input {
     }
     .column-Lightbox{
         width: auto;
+    }
+    .modal {
+        width: 50%;
     }
     .content-Lightbox {
         width: 90%;
