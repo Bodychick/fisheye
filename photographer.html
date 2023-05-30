@@ -19,7 +19,7 @@
           <p id="location"></p>
           <p id="tagline"></p>
         </section>
-        <button id="contactBouton" class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button aria-haspopup="dialog" aria-controls="modal-content" id="contactBouton" class="contact_button" type="button" onclick="displayModal()">Contactez-moi</button>
         <figure id="photo-photographe">
         </figure>
       </div>
@@ -35,8 +35,8 @@
 
       </section>
     </main>
-    <div id="contact_modal">
-			<div class="modal">
+    <div id="contact_modal" role="dialog" tabindex="0">
+			<div class="modal" role="document">
 				<header>
           <h2 id="nomPhotographerModal">Contactez-moi</h2>
           <button id="fermeture-modal"><img src="assets/icons/close.svg" alt="Fermez la modale de contact"/></button>
@@ -44,21 +44,21 @@
 				<form id="form-modal">
 					<div>
 						<label for="nameModal" id="nameModalLabel">Prénom</label>
-						<input type="text" id="nameModal" name="nameModal" aria-labelledby="nameModalLabel"/>
+						<input type="text" tabindex="0" id="nameModal" name="nameModal" aria-labelledby="nameModalLabel"/>
 					</div>
           <div>
 						<label for="lastNameModal" id="lastNameLabel" >Nom</label>
-						<input type="text" id="lastNameModal" name="lastNameModal" aria-labelledby="lastNameLabel"/>
+						<input type="text" tabindex="0" id="lastNameModal" name="lastNameModal" aria-labelledby="lastNameLabel"/>
 					</div>
           <div>
 						<label for="email" id="emailLabel">Email</label>
-						<input type="email" id="email" name="email" aria-labelledby="emailLabel"/>
+						<input type="email" tabindex="0" id="email" name="email" aria-labelledby="emailLabel"/>
 					</div>
           <div>
 						<label for="message" id="messageLabel">Votre message</label>
-						<textarea id="message" name="message" rows="4" cols="50" aria-labelledby="messageLabel"></textarea>
+						<textarea id="message" tabindex="0" name="message" rows="4" cols="50" aria-labelledby="messageLabel"></textarea>
 					</div>
-          <input type="submit" class="contact_button" value="Envoyer" id="buttonSubmit">
+          <input type="submit" tabindex="0" class="contact_button" value="Envoyer" id="buttonSubmit">
 				</form>
 			</div>
 		</div>

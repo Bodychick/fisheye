@@ -271,9 +271,12 @@ function loadLightbox(result) {
             const fondLightbox = document.createElement("div");
             fondLightbox.classList.add("fond-Lightbox");
             fondLightbox.setAttribute("id","fond-Lightbox");
+            fondLightbox.setAttribute("tabindex","0");
+            fondLightbox.setAttribute("role","dialog");
             const contentLightbox =document.createElement("div");
             contentLightbox.classList.add("content-Lightbox");
-            contentLightbox.setAttribute("aria-label","Vue rapprochée de l'image")
+            contentLightbox.setAttribute("aria-label","Vue rapprochée de l'image");
+            contentLightbox.setAttribute("role","document");
             const column1 = document.createElement("div");
             const column2 = document.createElement("div");
             const column3 = document.createElement("div");
@@ -283,28 +286,31 @@ function loadLightbox(result) {
             const icone = document.createElement("i");
             icone.classList.add("fa-solid","fa-xmark");
             icone.setAttribute("id","closeLightbox");
-            icone.setAttribute("role","button");
+            icone.setAttribute("role","button")
+            icone.setAttribute("tabindex","0");
             icone.setAttribute("aria-label", "Fermer la lightbox");
 
-            const backArrow = document.createElement("i");
-            const forwardArrow = document.createElement("i");
+            const mediaPrec = document.createElement("i");
+            const mediaSuiv = document.createElement("i");
 
-            backArrow.classList.add("fa-solid","fa-angle-left");
-            backArrow.setAttribute("id","beforeMedia");
-            backArrow.setAttribute("role","button");
-            backArrow.setAttribute("aria-label", "Média précédent");
-            forwardArrow.classList.add("fa-solid","fa-angle-right");
-            forwardArrow.setAttribute("id","nextMedia");
-            forwardArrow.setAttribute("role","button");
-            forwardArrow.setAttribute("aria-label", "Média suivant");
+            mediaPrec.classList.add("fa-solid","fa-angle-left");
+            mediaPrec.setAttribute("id","beforeMedia");
+            mediaPrec.setAttribute("role","button");
+            mediaPrec.setAttribute("tabindex","0");
+            mediaPrec.setAttribute("aria-label", "Média précédent");
+            mediaSuiv.classList.add("fa-solid","fa-angle-right");
+            mediaSuiv.setAttribute("id","nextMedia");
+            mediaSuiv.setAttribute("role","button");
+            mediaSuiv.setAttribute("aria-label", "Média suivant");
+            mediaSuiv.setAttribute("tabindex","0");
             const titre = document.createElement("h1");
             titre.textContent=valuetitre;
             titre.setAttribute("id","titre")
             icone.classList.add("iconeLightbox");
             column2.appendChild(media);
             column2.appendChild(titre);
-            column1.appendChild(backArrow);
-            column3.appendChild(forwardArrow);
+            column1.appendChild(mediaPrec);
+            column3.appendChild(mediaSuiv);
             column3.appendChild(icone);
             contentLightbox.appendChild(column1);
             contentLightbox.appendChild(column2);
@@ -312,7 +318,8 @@ function loadLightbox(result) {
             fondLightbox.appendChild(contentLightbox);
             if(document.getElementById("fond-Lightbox")==null){
                 main.appendChild(fondLightbox);
-            }    
+            }
+            fondLightbox.focus();    
             closeLightbox();
             beforeMedia(result);
             nextMedia(result);
