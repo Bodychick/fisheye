@@ -76,7 +76,6 @@ function switchTri(data,value){
         return data;
         case 'popular':
             data.sort(function(a,b){
-                // to get a value that is either negative, positive, or zero.
                 return (b.likes) - (a.likes);
                 });
             console.log(data);

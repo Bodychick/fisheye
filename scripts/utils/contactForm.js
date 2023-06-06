@@ -80,7 +80,7 @@ contactBouton.addEventListener("click",displayModal);
 
 function closeModal() {
     const modal = document.getElementById("contact_modal");
-    console.log("click")
+    console.log("click");
     modal.style.display = "none";
 }
 
