@@ -250,6 +250,7 @@ function loadLightbox(result) {
                 media = document.createElement("video");
                 media.classList.add("image-Lightbox");
                 media.setAttribute("controls","");
+                media.setAttribute("aria-label",valuetitre)
                 const source  = document.createElement("source");
                 source.setAttribute("alt", valuetitre);
                 source.setAttribute("id","mediaSource");
@@ -263,6 +264,7 @@ function loadLightbox(result) {
                 media.classList.add("image-Lightbox");
                 media.setAttribute("id","mediaSource");
                 media.setAttribute("alt",valuetitre);
+                media.setAttribute("aria-label",valuetitre);
                 media.src=imageSrc;
                 console.log(media);
             }

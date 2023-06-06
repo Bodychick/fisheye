@@ -38,6 +38,7 @@ function mediaFactory(data){
         //mediaElement.setAttribute("controls","");
         mediaElement.classList.add("image")
         mediaElement.setAttribute("alt", title);
+        mediaElement.setAttribute("aria-label",title);
         source.setAttribute("src",media);
         mediaElement.appendChild(source);
         lien.appendChild(mediaElement);
@@ -48,6 +49,7 @@ function mediaFactory(data){
         mediaElement.classList.add("image")
         mediaElement.setAttribute("src", media);
         mediaElement.setAttribute("alt", title);
+        mediaElement.setAttribute("aria-label", title);
         lien.appendChild(mediaElement);
      }
 
